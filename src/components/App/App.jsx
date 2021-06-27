@@ -1,10 +1,11 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
+import Footer from '../Footer/Footer';
 
 function App() {
   return (
     <div className="App">
-      <h1>FindHomy</h1>
+      <Footer />
     </div>
   );
 }
