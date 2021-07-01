@@ -3,7 +3,7 @@ import './Footer.scss';
 
 const Footer = () => (
   <footer className="Footer">
-    <div idName="logo-footer">
+    <div id="logo-footer">
       <h1>FindHomy</h1>
       <img src="https://img.wattpad.com/useravatar/Skereshrek.256.3927.jpg" alt="Logo" />
     </div>
