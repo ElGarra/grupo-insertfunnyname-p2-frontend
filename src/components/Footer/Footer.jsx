@@ -5,7 +5,7 @@ const Footer = () => (
   <footer className="Footer">
     <div id="logo-footer">
       <h1>FindHomy</h1>
-      <img src="https://img.wattpad.com/useravatar/Skereshrek.256.3927.jpg" alt="Logo" />
+      <img src="onlylogo.png" alt="Logo" />
     </div>
     <div className="footer-box">
       <ul>

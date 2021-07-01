@@ -1,6 +1,16 @@
 $nav-bg: #fff;
 $accent: #ffffff;
 
+$primary-color: #4485F2;
+$primary-color-light: #98e354;
+$primary-color-dark: #0B4499;
+
+$secondary-color: #F1F0F0;
+$secondary-color-light: #ed444d;
+$secondary-color-dark: #DADADA;
+
+$white-text: #000;
+
 $navbar-height: 160px;
 
 header {
@@ -22,6 +32,7 @@ header {
   width: 100vw;
   height: $navbar-height;
   background: $nav-bg;
+  box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.36);
 
 #navbar-title-mark{
   text-align: center;
@@ -30,6 +41,7 @@ header {
   font-weight: bold;
   color: #ffffff;
   margin-left: auto;
+  border-right: 3px solid #000;
 }
 
 .logo img {
@@ -82,6 +94,8 @@ a {
 .word-mark {
   padding-left: 20px;
   padding-right: 20px;
+  border-right: 3px solid #DADADA;
+  border-left: 3px solid #DADADA;
 }
 
 .logo {
@@ -147,6 +161,20 @@ a {
   width: 90px;
 }
 
+.navbar-form {
+  margin-left: auto;
+  text-align: center;
+}
+
+#search {
+  margin-left: auto;
+  border-radius: 10px;
+  width: 500px;
+  height: 25px;
+}
+.searchbar-container {
+  margin-left: 250px;
+}
 /*
   RESPONSIVE STUFF
 */

@@ -13,11 +13,16 @@ const Navbar = () => (
               </a>
             </div>
             <div className="word-mark" id="navbar-word-mark">
-              <a href="/">TrippieBook</a>
+              <a href="/"> Properties</a>
             </div>
           </div>
-          <div className="title-mark" id="navbar-title-mark">
-            <p> Enjoy your Travels!</p>
+          <div className="searchbar-container">
+            <form className="navbar-form">
+              <label htmlFor="search">
+                Search
+                <input id="search" type="text" />
+              </label>
+            </form>
           </div>
         </div>
         <div id="menu-container">
