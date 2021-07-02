@@ -1,3 +1,17 @@
+# Uso de la App
+
+## El link para acceder a la App:
+https://adoring-hamilton-a871be.netlify.app
+
+## Funcionalidades:
+Los usuarios pueden vender, arrendar o comprar propiedades usando FindHomy. Dentro de esta app se permite comunicación entre un usuario interesado en una propiedad con el vendedor. El vendedor incluye una descripción de su propiedad, tamaño, etc que será visible para cualquier usuario, no sólo los que no hayan hecho login. No obstante, estos visitantes no podrán hacer comentarios, crear reuniones con los vendedores o reportar a un usuario. 
+
+Al momento que un usuario decida publicar una propiedad, éste tiene la opción de subir las imagenes de la propiedad. 
+
+Finalmente, se pueden hacer comentarios de las propiedades por usuarios inscritos en la app, en caso de que un usuario publique un comentario inapropiado, otro usuario tiene la posibilidad de reportar a dicho usuario. El admin va a revisar estos reportes y decidir que acción se va a tomar. 
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +82,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
