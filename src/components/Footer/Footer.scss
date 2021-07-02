@@ -1,0 +1,76 @@
+$primary-color: #4485F2;
+$primary-color-light: #98e354;
+$primary-color-dark: #0B4499;
+
+$secondary-color: #F1F0F0;
+$secondary-color-light: #ed444d;
+$secondary-color-dark: #DADADA;
+
+$white-text: #000;
+
+Footer {
+  background-color: #FFF;
+  color: $white-text;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 3fr 2fr 2fr;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: -2px -1px 3px 0px rgba(0,0,0,0.36);
+}
+
+#logo-footer {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  padding: 20px;
+  border-right: 3px solid $secondary-color-dark;
+
+  h1 {
+    margin: 20px;
+    color: $primary-color-dark;
+    text-align: center;
+    font-size: 36px;
+  }
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+    justify-self: center;
+  }
+}
+
+.footer-box {
+  padding: 20px;
+
+  a {
+    color: $white-text;
+    text-decoration: none;
+  }
+
+  hr { 
+    display: block; 
+    height: 1px;
+    border: 0; 
+    border-top: 1px solid $secondary-color-dark;
+    margin: 1em 0; 
+    padding: 0; 
+  }
+
+  ul {
+    list-style-type: square;
+  }
+}
+
+.copyright {
+  text-align: center;
+  margin: auto;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+.footer-box:nth-of-type(odd) {
+  border-left: 3px solid $secondary-color-dark;
+}
