@@ -1,4 +1,19 @@
-// @import './components/App/App.scss';
-// @import './components/Drawer/Drawer.scss';
-// @import './components/Footer/Footer.scss';
-// @import './components/Navbar/Navbar.scss';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto', sans-serif;
+}
