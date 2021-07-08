@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Signup = () => {
-  const text = 'Signup';
+const Properties = () => {
+  const text = 'Properties';
   return (
     <div>
       <h1>{text}</h1>
@@ -9,4 +9,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Properties;
