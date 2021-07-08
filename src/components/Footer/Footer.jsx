@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.scss';
 
 const Footer = () => (
   <footer className="Footer">
     <div id="logo-footer">
-      <h1 className="wordmark">FindHomy</h1>
-      <img src="logo512.png" alt="Logo" />
+      <Link to="/">
+        <h1 className="wordmark">FindHomy</h1>
+        <img src="logo512.png" alt="Logo" />
+      </Link>
     </div>
     <div className="footer-box">
       <ul>
