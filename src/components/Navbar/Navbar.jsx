@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.scss';
-import Button from '../Button/Button';
+import Button from '../BaseButton/BaseButton';
 import SearchBar from '../SearchBar/SearchBar';
 
 const Navbar = () => (
@@ -29,7 +29,7 @@ const Navbar = () => (
             </Link>
           </div>
           <div>
-            <Link to="login">
+            <Link to="signup">
               <Button>Sign up</Button>
             </Link>
           </div>
