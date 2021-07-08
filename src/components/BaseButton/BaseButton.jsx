@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Button.scss';
+import './BaseButton.scss';
 
-const Button = (props) => {
+const BaseButton = (props) => {
   const { children } = props;
 
   return (
-    <button className="Button" type="button">
+    <button className="BaseButton" type="button">
       {children}
     </button>
   );
 };
 
-Button.propTypes = {
+BaseButton.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-export default Button;
+export default BaseButton;
