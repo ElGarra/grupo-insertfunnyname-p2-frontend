@@ -4,29 +4,42 @@ import './Footer.scss';
 const Footer = () => (
   <footer className="Footer">
     <div id="logo-footer">
-      <h1>FindHomy</h1>
-      <img src="onlylogo.png" alt="Logo" />
+      <h1 className="wordmark">FindHomy</h1>
+      <img src="logo512.png" alt="Logo" />
     </div>
     <div className="footer-box">
       <ul>
-        <li><a href="https://www.youtube.com/watch?v=5E2dsqjoFXg&ab_channel=JohnTimston">About</a></li>
-      </ul>
-      <hr />
-      <ul>
-        <li><a href="https://www.youtube.com/watch?v=pCjBetzC8ME&ab_channel=Meow%3FWoof%21">Contact</a></li>
-      </ul>
-      <hr />
-      <ul>
-        <li><a href="https://www.youtube.com/watch?v=GfT5CqrWJW0&ab_channel=ALIBA">Terms of Service</a></li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=5E2dsqjoFXg&ab_channel=JohnTimston">About</a>
+        </li>
+        <hr />
+        <li>
+          <a href="https://www.youtube.com/watch?v=pCjBetzC8ME&ab_channel=Meow%3FWoof%21">
+            Contact
+          </a>
+        </li>
+        <hr />
+        <li>
+          <a href="https://www.youtube.com/watch?v=GfT5CqrWJW0&ab_channel=ALIBA">
+            Terms of Service
+          </a>
+        </li>
       </ul>
     </div>
     <div className="footer-box">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Explicabo repudiandae eveniet iure provident suscipit minus
-      magnam facere, sit nihil veritatis. Dolorum illum ratione,
-      corrupti dolorem eum pariatur alias expedita ullam.
+      <ul>
+        <li>
+          <a href="https://documenter.getpostman.com/view/15970655/TzeTKA1X">Docs</a>
+        </li>
+        <hr />
+        <li>
+          <a href="https://trippybook.herokuapp.com/posts">TrippyBook</a>
+        </li>
+      </ul>
     </div>
-    <div className="copyright">© Copyright 2021 InsertFunnyName</div>
+    <div className="copyright">
+      <span className="subtitle2">© Copyright 2021 InsertFunnyName</span>
+    </div>
   </footer>
 );
 
