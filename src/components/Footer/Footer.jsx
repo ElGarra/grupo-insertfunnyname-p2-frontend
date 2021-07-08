@@ -10,17 +10,31 @@ const Footer = () => (
     <div className="footer-box">
       <ul>
         <li>
-          <a href="https://www.youtube.com/watch?v=5E2dsqjoFXg&ab_channel=JohnTimston">About</a>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.youtube.com/watch?v=5E2dsqjoFXg&ab_channel=JohnTimston"
+          >
+            About
+          </a>
         </li>
         <hr />
         <li>
-          <a href="https://www.youtube.com/watch?v=pCjBetzC8ME&ab_channel=Meow%3FWoof%21">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.youtube.com/watch?v=pCjBetzC8ME&ab_channel=Meow%3FWoof%21"
+          >
             Contact
           </a>
         </li>
         <hr />
         <li>
-          <a href="https://www.youtube.com/watch?v=GfT5CqrWJW0&ab_channel=ALIBA">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.youtube.com/watch?v=GfT5CqrWJW0&ab_channel=ALIBA"
+          >
             Terms of Service
           </a>
         </li>
@@ -29,11 +43,19 @@ const Footer = () => (
     <div className="footer-box">
       <ul>
         <li>
-          <a href="https://documenter.getpostman.com/view/15970655/TzeTKA1X">Docs</a>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://documenter.getpostman.com/view/15970655/TzeTKA1X"
+          >
+            Docs
+          </a>
         </li>
         <hr />
         <li>
-          <a href="https://trippybook.herokuapp.com/posts">TrippyBook</a>
+          <a target="_blank" rel="noreferrer" href="https://trippybook.herokuapp.com/posts">
+            TrippyBook
+          </a>
         </li>
       </ul>
     </div>
