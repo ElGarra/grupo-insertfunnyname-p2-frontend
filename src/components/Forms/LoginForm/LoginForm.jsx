@@ -27,11 +27,16 @@ const LoginForm = () => {
     setLoading(true);
     try {
       const response = await backendAPI.post('/auth', formValues);
-      if (!response.ok) {
-        const error = await response.text();
-        throw new Error(error);
+      const { error } = response.data;
+      if (error) {
+        let errorMessage = `${error}. `;
+        const { errors } = response.data;
+        if (errors) {
+          errorMessage += Object.values(errors).join('. ');
+        }
+        throw new Error(errorMessage);
       }
-      setMessage('User has been successfuly created');
+      setMessage('Logged in successfully');
     } catch (error) {
       setMessage(error.message);
     } finally {
