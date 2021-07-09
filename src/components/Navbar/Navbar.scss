@@ -1,202 +1,68 @@
-$nav-bg: #fff;
-$accent: #ffffff;
-
-$primary-color: #4485F2;
-$primary-color-light: #98e354;
-$primary-color-dark: #0B4499;
-
-$secondary-color: #F1F0F0;
-$secondary-color-light: #ed444d;
-$secondary-color-dark: #DADADA;
-
-$white-text: #000;
+@use "sass:map";
+@import '../../styles/colors.scss';
+@import '../../styles/typography.scss';
 
 $navbar-height: 160px;
-
-header {
-  display: flex;
-  background: $nav-bg;
-}
+$navbar-logo-height: 100px;
 
 .navbar-offset {
   display: block;
-  height: 160px;
-}
-
-.navbar {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  position: fixed;
-  z-index: 10;
-  transition: all 0.3s;
-  width: 100vw;
   height: $navbar-height;
-  background: $nav-bg;
-  box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.36);
-
-#navbar-title-mark{
-  text-align: center;
-  display: inline;
-  font-size: 20px;
-  font-weight: bold;
-  color: #ffffff;
-  margin-left: auto;
-  border-right: 3px solid #000;
 }
 
-.logo img {
-  height: 150px;
-}
-
-a {
-  font-size: 18px;
-}
-
-#menu-container ul #profile-picture-container {
-  height: 50px;
-  width: 50px;
-}
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-}
-
-#brand-container,
-#menu-container {
+.Navbar {
   display: flex;
-  align-items: center;
-}
+  background-color: $white;
+  position: fixed;
+  top: 0;
+  z-index: 10;
 
-#brand-container {
-  padding-left: 40px;
-}
+  height: $navbar-height;
+  width: 100vw;
 
-.brand {
-  display: flex;
-  align-items: center;
-  border-radius: 25px;
-  background: $nav-bg;
-  box-sizing: border-box;
-}
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.36);
 
-.brand-title {
-  display: flex;
-  margin-left: auto;
-  align-items: center;
-  text-align: center;
-  border-radius: 25px;
-  background: $nav-bg;
-  box-sizing: border-box;
-}
-
-.word-mark {
-  padding-left: 20px;
-  padding-right: 20px;
-  border-right: 3px solid #DADADA;
-  border-left: 3px solid #DADADA;
-}
-
-.logo {
-  cursor: pointer;
-}
-
-.logo img {
-  height: 100px;
-  transition: all 0.3s;
-}
-
-#menu-container {
-  justify-content: flex-end;
-  padding-right: 40px;
-  font-size: 20px;
-
-  ul {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-  }
-
-  li {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-    height: 2em;
-    margin-left: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    background: $nav-bg;
-    border-radius: 90px;
-  }
-
-  a {
+  nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    z-index: 10;
     transition: all 0.3s;
-  }
-}
 
-.logout-button {
-  background: inherit;
-  border: inherit;
-  padding: inherit;
-  font-family: inherit;
-  cursor: pointer;
-  font: inherit;
-}
+    div {
+      display: flex;
+      align-items: center;
+    }
 
-#profile-picture {
-  max-height: 100%;
-  border-radius: 50%;
-  border: 3px solid $accent;
-  box-sizing: border-box;
-}
+    #navbar-title-mark {
+      text-align: center;
+      display: inline;
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffffff;
+      margin-left: auto;
+      border-right: 3px solid #000;
+    }
 
-#menu-container ul #profile-picture-container {
-  transition: all 0.3s;
-  padding: 0;
-  display: block;
-  height: 90px;
-  width: 90px;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
 
-.navbar-form {
-  margin-left: auto;
-  text-align: center;
-}
-
-#search {
-  margin-left: auto;
-  border-radius: 10px;
-  width: 500px;
-  height: 25px;
-}
-.searchbar-container {
-  margin-left: 250px;
-}
-/*
-  RESPONSIVE STUFF
-*/
-#menu-toggle {
-  border-radius: 50%;
-  cursor: pointer;
-  display: none;
-  &:hover .bar {
-    width: 25px;
-  }
-  &.closeMenu {
-    .bar {
-      width: 25px;
-      &:first-child {
-        transform: translateY(7px) rotate(45deg);
-      }
-      &:nth-child(2) {
-        transform: scale(0);
-      }
-      &:last-child {
-        transform: translateY(-7px) rotate(-45deg);
+      .logo img {
+        height: $navbar-logo-height;
       }
     }
+
+    .button-container {
+      margin: auto;
+    }
+  }
+
+  div:nth-child(1) {
+    padding-left: 40px;
+  }
+
+  div:nth-last-child(1) {
+    padding-right: 40px;
   }
 }

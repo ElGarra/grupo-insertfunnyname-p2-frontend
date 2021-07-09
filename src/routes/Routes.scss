@@ -1,0 +1,14 @@
+@import '../styles/colors.scss';
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+
+  .viewport {
+    padding: 20px;
+    width: 66vw;
+    min-width: 600px;
+  }
+}

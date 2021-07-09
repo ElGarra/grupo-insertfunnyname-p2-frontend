@@ -1,43 +1,46 @@
-$primary-color: #4485F2;
-$primary-color-light: #98e354;
-$primary-color-dark: #0B4499;
+@use "sass:map";
+@import '../../styles/colors.scss';
+@import '../../styles/typography.scss';
 
-$secondary-color: #F1F0F0;
+$primary-color: #4485f2;
+$primary-color-light: #98e354;
+$primary-color-dark: #0b4499;
+
+$secondary-color: #f1f0f0;
 $secondary-color-light: #ed444d;
-$secondary-color-dark: #DADADA;
+$secondary-color-dark: #dadada;
 
 $white-text: #000;
 
 Footer {
-  background-color: #FFF;
-  color: $white-text;
+  background-color: $white;
   bottom: 0;
   display: grid;
   grid-template-columns: 3fr 2fr 2fr;
   gap: 20px;
   padding: 20px;
-  margin-top: 20px;
-  box-shadow: -2px -1px 3px 0px rgba(0,0,0,0.36);
+  box-shadow: -2px -1px 3px 0px rgba(0, 0, 0, 0.36);
+
+  position: relative;
+  z-index: 100;
 }
 
 #logo-footer {
   grid-row-start: 1;
   grid-row-end: 3;
   padding: 20px;
-  border-right: 3px solid $secondary-color-dark;
+  border-right: 3px solid map-get($map: $gray, $key: 'main');
 
   h1 {
     margin: 20px;
-    color: $primary-color-dark;
     text-align: center;
-    font-size: 36px;
   }
 
   img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 200px;
+    max-height: 200px;
     justify-self: center;
   }
 }
@@ -46,22 +49,30 @@ Footer {
   padding: 20px;
 
   a {
-    color: $white-text;
-    text-decoration: none;
+    @extend .subtitle1;
   }
 
-  hr { 
-    display: block; 
+  hr {
+    display: block;
     height: 1px;
-    border: 0; 
-    border-top: 1px solid $secondary-color-dark;
-    margin: 1em 0; 
-    padding: 0; 
+    border: 0;
+    border-top: 1px solid map-get($map: $gray, $key: 'main');
+    margin: 1em 0;
+    padding: 0;
   }
 
   ul {
-    list-style-type: square;
+    list-style-type: none;
+    padding: 0;
   }
+
+  li {
+    text-align: center;
+  }
+}
+
+.footer-box:nth-of-type(odd) {
+  border-left: 3px solid map-get($map: $gray, $key: 'main');
 }
 
 .copyright {
@@ -69,8 +80,4 @@ Footer {
   margin: auto;
   grid-column-start: 2;
   grid-column-end: 4;
-}
-
-.footer-box:nth-of-type(odd) {
-  border-left: 3px solid $secondary-color-dark;
 }
