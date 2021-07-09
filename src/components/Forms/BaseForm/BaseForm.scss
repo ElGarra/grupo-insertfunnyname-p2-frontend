@@ -1,0 +1,15 @@
+@use "sass:map";
+@import '../../../styles/colors.scss';
+@import '../../../styles/typography.scss';
+
+.BaseForm {
+  .formTitle {
+    color: map-get($map: $gray, $key: 'dark');
+  }
+
+  .error {
+    @extend .subtitle2;
+
+    color: map-get($map: $error, $key: 'main');
+  }
+}
