@@ -1,12 +1,12 @@
 import React from 'react';
-import Button from '../components/BaseButton/BaseButton';
+import BaseButton from '../components/BaseButton/BaseButton';
 
 const Home = () => {
   const text = 'Test';
   return (
     <div>
-      <h1>Button</h1>
-      <Button>{text}</Button>
+      <h1>THIS IS THE HOMEPAGE</h1>
+      <BaseButton>{text}</BaseButton>
     </div>
   );
 };
