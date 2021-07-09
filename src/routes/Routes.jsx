@@ -9,19 +9,23 @@ import Home from '../views/Home';
 import Login from '../views/Login';
 import Properties from '../views/Properties';
 import Signup from '../views/Signup';
+import AuthContextProvider from '../contexts/AuthContext';
 
 const Routes = () => (
   <Router>
-    <Navbar />
-    <div className="content">
-      <div className="viewport">
-        <Route path="/" exact component={Home} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/signup" exact component={Signup} />
-        <Route path="/properties" exact component={Properties} />
+    <AuthContextProvider>
+      <Navbar />
+      <div className="content">
+        <div className="viewport">
+          <Route path="/" exact component={Home} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/properties" exact component={Properties} />
+        </div>
       </div>
-    </div>
-    <Footer />
+      <Footer />
+    </AuthContextProvider>
   </Router>
 );
+
 export default Routes;
