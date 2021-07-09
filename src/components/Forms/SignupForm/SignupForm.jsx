@@ -93,8 +93,10 @@ const SignupForm = () => {
           />
           <Checkbox id="acceptedTerms" name="acceptedTerms">
             I accept the
-            {}
-            <a href="https://www.youtube.com/watch?v=zVTsFKJ2nJE"> Terms and Conditions</a>
+            <a target="_blank" rel="noreferrer" href="https://www.youtube.com/watch?v=zVTsFKJ2nJE">
+              {' '}
+              Terms and Conditions
+            </a>
           </Checkbox>
           <BaseButton type="submit">Submit</BaseButton>
         </Form>
