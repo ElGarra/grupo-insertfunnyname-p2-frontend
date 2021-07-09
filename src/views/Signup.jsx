@@ -1,10 +1,13 @@
 import React from 'react';
 
+import SignupForm from '../components/Forms/SignupForm/SignupForm';
+
 const Signup = () => {
-  const text = 'Signup';
+  const title = 'Signup';
   return (
     <div>
-      <h1>{text}</h1>
+      <h1>{title}</h1>
+      <SignupForm />
     </div>
   );
 };

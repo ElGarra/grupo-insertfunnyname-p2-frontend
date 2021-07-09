@@ -1,10 +1,13 @@
 import React from 'react';
 
+import LoginForm from '../components/Forms/LoginForm/LoginForm';
+
 const Login = () => {
-  const text = 'Login';
+  const title = 'Login';
   return (
     <div>
-      <h1>{text}</h1>
+      <h1>{title}</h1>
+      <LoginForm />
     </div>
   );
 };
