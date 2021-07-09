@@ -3,7 +3,8 @@ name: IIC2513 Frontend Node CI
 on: pull_request
 
 jobs:
-  lint:
+  tests:
+    name: Tests and linters
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -12,3 +13,5 @@ jobs:
         run: yarn install
       - name: Run ESLint
         run: yarn lint
+      - name: Run Tests
+        run: yarn test
