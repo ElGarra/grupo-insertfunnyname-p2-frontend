@@ -8,8 +8,21 @@
   }
 
   .error {
-    @extend .subtitle2;
+    @extend .overline;
 
     color: map-get($map: $error, $key: 'main');
+  }
+
+  label {
+    @extend .body1;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      margin-top: 20px;
+    }
   }
 }
