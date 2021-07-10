@@ -2,8 +2,8 @@ import React from 'react';
 
 import './Property.scss';
 
-import FullPropertyCard from '../components/Cards/FullPropertyCard/FullPropertyCard';
-import CommentCard from '../components/Cards/CommentCard/CommentCard';
+import FullPropertyCard from '../../components/Cards/FullPropertyCard/FullPropertyCard';
+import CommentCard from '../../components/Cards/CommentCard/CommentCard';
 
 const Property = () => {
   const tempUser = {

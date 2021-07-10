@@ -1,0 +1,28 @@
+@use "sass:map";
+@import '../../../styles/colors.scss';
+@import '../../../styles/typography.scss';
+
+.BaseForm {
+  .formTitle {
+    color: map-get($map: $gray, $key: 'dark');
+  }
+
+  .error {
+    @extend .overline;
+
+    color: map-get($map: $error, $key: 'main');
+  }
+
+  label {
+    @extend .body1;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      margin-top: 20px;
+    }
+  }
+}

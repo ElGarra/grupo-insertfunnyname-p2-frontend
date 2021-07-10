@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Properties.scss';
 
-import IndexCard from '../components/Cards/IndexCard/IndexCard';
+import IndexCard from '../../components/Cards/IndexCard/IndexCard';
 
 const Properties = () => {
   const tempProperty = {
