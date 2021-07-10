@@ -9,6 +9,7 @@ import Home from '../views/Home';
 import Login from '../views/Login';
 import Properties from '../views/Properties';
 import Signup from '../views/Signup';
+import Property from '../views/Property';
 
 const Routes = () => (
   <Router>
@@ -19,6 +20,7 @@ const Routes = () => (
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/properties" exact component={Properties} />
+        <Route path="/property" exact component={Property} />
       </div>
     </div>
     <Footer />
