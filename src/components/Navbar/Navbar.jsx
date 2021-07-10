@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import './Navbar.scss';
+
+import useAuth from '../../hooks/useAuth';
 import Button from '../BaseButton/BaseButton';
 import SearchBar from '../SearchBar/SearchBar';
 
-import useAuth from '../../hooks/useAuth';
-
 const Navbar = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, handleUserLogout } = useAuth();
 
   return (
     <>
@@ -30,14 +31,12 @@ const Navbar = () => {
           {currentUser ? (
             <div>
               <div className="button-container">
-                <Link to="logout">
-                  <Button>Log Out</Button>
+                <Link to="profile">
+                  <Button>My profile</Button>
                 </Link>
               </div>
               <div className="button-container">
-                <Link to="signup">
-                  <Button>Sign up</Button>
-                </Link>
+                <Button onClick={handleUserLogout}>Log Out</Button>
               </div>
             </div>
           ) : (

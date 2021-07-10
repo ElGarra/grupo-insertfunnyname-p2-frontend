@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 
 import './SignupForm.scss';
 
-import backendAPI from '../../../apis/backend';
+import apiClient from '../../../apis/backend';
 import BaseForm from '../BaseForm/BaseForm';
 import TextInput from '../TextInput/TextInput';
 import Checkbox from '../Checkbox/Checkbox';
@@ -45,7 +45,7 @@ const SignupForm = () => {
   const onSubmit = async (formValues) => {
     setLoading(true);
     try {
-      const response = await backendAPI.post('/users', formValues);
+      const response = await apiClient.createUser(formValues);
       const { error } = response.data;
       if (error) {
         let errorMessage = `${error}. `;
@@ -56,7 +56,6 @@ const SignupForm = () => {
         }
         throw new Error(errorMessage);
       }
-      setMessage('User has been successfuly created');
     } catch (error) {
       setMessage(error.message);
     } finally {

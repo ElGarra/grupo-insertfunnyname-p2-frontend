@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 
 import './LoginForm.scss';
 
-import backendAPI from '../../../apis/backend';
+import apiClient from '../../../apis/backend';
 import BaseForm from '../BaseForm/BaseForm';
 import TextInput from '../TextInput/TextInput';
 import BaseButton from '../../BaseButton/BaseButton';
@@ -27,7 +27,7 @@ const LoginForm = ({ submitCallback }) => {
   const onSubmit = async (formValues) => {
     setLoading(true);
     try {
-      const response = await backendAPI.post('/auth', formValues);
+      const response = await apiClient.loginUser(formValues);
       const { error } = response.data;
       if (error) {
         let errorMessage = `${error}. `;
@@ -38,10 +38,10 @@ const LoginForm = ({ submitCallback }) => {
         throw new Error(errorMessage);
       } else {
         submitCallback(response.data);
+        setLoading(false);
       }
     } catch (error) {
       setMessage(error.message);
-    } finally {
       setLoading(false);
     }
   };
