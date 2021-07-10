@@ -1,13 +1,16 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
+import useAuth from '../hooks/useAuth';
 import LoginForm from '../components/Forms/LoginForm/LoginForm';
 
 const Login = () => {
-  const title = 'Login';
+  const { currentUser, handleUserLogin } = useAuth();
   return (
     <div>
-      <h1>{title}</h1>
-      <LoginForm />
+      {currentUser && <Redirect to="/" />}
+      <h1>Log In</h1>
+      <LoginForm submitCallback={handleUserLogin} />
     </div>
   );
 };

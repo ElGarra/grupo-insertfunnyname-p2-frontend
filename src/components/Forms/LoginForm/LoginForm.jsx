@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
@@ -9,7 +10,7 @@ import BaseForm from '../BaseForm/BaseForm';
 import TextInput from '../TextInput/TextInput';
 import BaseButton from '../../BaseButton/BaseButton';
 
-const LoginForm = () => {
+const LoginForm = ({ submitCallback }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
@@ -35,8 +36,10 @@ const LoginForm = () => {
           errorMessage += Object.values(errors).join('. ');
         }
         throw new Error(errorMessage);
+      } else {
+        submitCallback(response.data);
+        setMessage('Logged in successfully');
       }
-      setMessage('Logged in successfully');
     } catch (error) {
       setMessage(error.message);
     } finally {
@@ -63,6 +66,14 @@ const LoginForm = () => {
       {message ? <p className="subtitle1">{message}</p> : null}
     </BaseForm>
   );
+};
+
+LoginForm.propTypes = {
+  submitCallback: PropTypes.func,
+};
+
+LoginForm.defaultProps = {
+  submitCallback: () => {},
 };
 
 export default LoginForm;
