@@ -1,0 +1,42 @@
+@use "sass:map";
+@import '../../../styles/colors.scss';
+@import '../../../styles/typography.scss';
+
+.BaseCard {
+  position: relative;
+  background-color: $white;
+  overflow: hidden;
+  box-shadow: 0 3px 15px rgba($black, 0.2);
+  border-radius: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+
+  .card {
+    &__image {
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 100%;
+        object-fit: contain;
+      }
+      a {
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+
+    &__title {
+      color: map-get($map: $gray, $key: 'dark');
+    }
+
+    &__stats {
+      &__title {
+        color: map-get($map: $gray, $key: 'dark');
+        text-transform: uppercase;
+        font-size: 16px;
+      }
+    }
+  }
+}

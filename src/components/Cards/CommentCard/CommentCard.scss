@@ -1,0 +1,42 @@
+@use "sass:map";
+@import "../../../styles/colors.scss";
+
+.CommentCard {
+  padding: 20px;
+
+  .card {
+    &__info {
+      margin: 0;
+
+      &__user {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        
+
+        img {
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          object-fit: cover;
+          margin-right: 10px;
+        }
+
+        h3 {
+          margin: 0 10px 0 10px;
+        }
+
+        .comment-date {
+          margin-left: auto;
+          color: map-get($map: $gray, $key: 'dark');
+          margin-right: 10px;
+        }
+      }
+
+      &__extra {
+        text-align: justify;
+        margin: 0;
+      }
+    }
+  }
+}
