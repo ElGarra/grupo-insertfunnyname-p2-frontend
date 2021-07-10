@@ -11,25 +11,25 @@ import jwtDecode from 'jwt-decode';
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [sessionExpDate, setSessionExpDate] = useState();
+  const [currentUser, storeUser, clearStoredUser] = useState('user');
+  const [sessionExpDate, storeSessionExpDate, clearSessionExpDate] = useState('sessionExp');
   const history = useHistory();
   let logoutTimer;
 
   const handleUserLogin = (user) => {
-    const expiration = new Date(jwtDecode(user.accessToken).exp * 1000);
-    setCurrentUser(user);
-    setSessionExpDate(expiration);
+    const expiration = new Date(jwtDecode(user.token).exp * 1000);
+    storeUser(user.token);
+    storeSessionExpDate(expiration);
   };
 
   const handleUserLogout = () => {
-    setCurrentUser(null);
-    setSessionExpDate();
+    clearStoredUser();
+    clearSessionExpDate();
   };
 
   const handleAutomaticLogout = useCallback(() => {
-    setCurrentUser(null);
-    setSessionExpDate();
+    clearStoredUser();
+    clearSessionExpDate();
     history.push('/login');
   }, []);
 
