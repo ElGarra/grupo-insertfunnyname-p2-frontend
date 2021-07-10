@@ -3,14 +3,18 @@ import PropTypes from 'prop-types';
 
 import './BaseCard.scss';
 
-const BaseButton = (props) => {
+const BaseCard = (props) => {
   const { children } = props;
 
-  return <div className="BaseCard">{children}</div>;
+  return (
+    <div className="BaseCard">
+      {children}
+    </div>
+  );
 };
 
-BaseButton.propTypes = {
+BaseCard.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-export default BaseButton;
+export default BaseCard;

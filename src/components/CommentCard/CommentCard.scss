@@ -1,0 +1,39 @@
+.CommentCard {
+  width: 50vw;
+  min-width: 600px;
+  display: grid;
+
+  margin-bottom: 10px;
+
+  grid: auto auto auto / repeat(3, minmax(80px, 1fr));
+  .card__info {
+    grid-column: span 3;
+    margin: 0;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    &__user {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      .poster-user-picture {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+      h3 {
+        margin: 10px 0 10px 0;
+      }
+    }
+
+    &__extra {
+      text-align: justify;
+      margin: 0;
+      margin-bottom: 10px;
+    }
+  }
+}

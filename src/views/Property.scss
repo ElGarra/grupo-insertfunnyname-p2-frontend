@@ -1,0 +1,21 @@
+.post-column {
+  display: flex;
+  flex-direction: column;
+  justify-self: right;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cards-canvas {
+  display: grid;
+  grid-template-areas: 'main aside';
+
+  align-items: flex-start;
+  justify-items: left;
+  gap: 30px;
+
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}

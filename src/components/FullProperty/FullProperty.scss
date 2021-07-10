@@ -1,0 +1,12 @@
+@import '../IndexCard/IndexCard.scss';
+
+.full-post {
+  @extend .index-post;
+  margin-bottom: 20px;
+
+  .card__image {
+    grid-column: span 3;
+    max-height: none;
+    object-fit: cover;
+  }
+}
