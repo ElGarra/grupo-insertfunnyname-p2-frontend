@@ -4,40 +4,61 @@ import './Navbar.scss';
 import Button from '../BaseButton/BaseButton';
 import SearchBar from '../SearchBar/SearchBar';
 
-const Navbar = () => (
-  <>
-    <header className="Navbar">
-      <nav>
-        <div>
-          <div className="brand">
-            <div className="logo">
-              <Link to="/">
-                <img src="logo-brand.png" alt="Logo" />
-              </Link>
+import useAuth from '../../hooks/useAuth';
+
+const Navbar = () => {
+  const { currentUser } = useAuth();
+
+  return (
+    <>
+      <header className="Navbar">
+        <nav>
+          <div>
+            <div className="brand">
+              <div className="logo">
+                <Link to="/">
+                  <img src="logo-brand.png" alt="Logo" />
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-        <div>
-          <div className="searchbar-container">
-            <SearchBar />
+          <div>
+            <div className="searchbar-container">
+              <SearchBar />
+            </div>
           </div>
-        </div>
-        <div>
-          <div className="button-container">
-            <Link to="login">
-              <Button>Log In</Button>
-            </Link>
-          </div>
-          <div className="button-container">
-            <Link to="signup">
-              <Button>Sign up</Button>
-            </Link>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <div className="navbar-offset" />
-  </>
-);
+          {currentUser ? (
+            <div>
+              <div className="button-container">
+                <Link to="logout">
+                  <Button>Log Out</Button>
+                </Link>
+              </div>
+              <div className="button-container">
+                <Link to="signup">
+                  <Button>Sign up</Button>
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div className="button-container">
+                <Link to="login">
+                  <Button>Log In</Button>
+                </Link>
+              </div>
+              <div className="button-container">
+                <Link to="signup">
+                  <Button>Sign up</Button>
+                </Link>
+              </div>
+            </div>
+          )}
+        </nav>
+      </header>
+      <div className="navbar-offset" />
+    </>
+  );
+};
 
 export default Navbar;
