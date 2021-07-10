@@ -5,12 +5,12 @@ import './Routes.scss';
 
 import Footer from '../components/Footer/Footer';
 import Navbar from '../components/Navbar/Navbar';
-import Home from '../views/Home';
-import Login from '../views/Login';
-import Properties from '../views/Properties';
-import Signup from '../views/Signup';
+import Home from '../views/Home/Home';
+import Login from '../views/Login/Login';
+import Properties from '../views/Properties/Properties';
+import Signup from '../views/Signup/Signup';
 import AuthContextProvider from '../contexts/AuthContext';
-import Property from '../views/Property';
+import Property from '../views/Property/Property';
 
 const Routes = () => (
   <Router>

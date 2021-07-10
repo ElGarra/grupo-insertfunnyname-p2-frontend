@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseButton from '../components/BaseButton/BaseButton';
+import BaseButton from '../../components/BaseButton/BaseButton';
 
 const Home = () => {
   const text = 'Test';
