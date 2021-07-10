@@ -1,12 +1,15 @@
-.CommentCard {
-  width: 50vw;
-  min-width: 600px;
+.IndexCard {
   display: grid;
 
-  margin-bottom: 10px;
-
   grid: auto auto auto / repeat(3, minmax(80px, 1fr));
+
+  .card__image {
+    grid-column: span 3;
+    max-height: 400px;
+  }
+
   .card__info {
+    border-top: 7px solid var(--secondaryColor);
     grid-column: span 3;
     margin: 0;
 
@@ -34,6 +37,30 @@
       text-align: justify;
       margin: 0;
       margin-bottom: 10px;
+    }
+  }
+
+  .card__stats {
+    display: flex;
+    margin: 10px 25px;
+    align-items: center;
+
+    &__title {
+      margin: 0;
+      margin-right: 20px;
+    }
+
+    &__info {
+      margin: 0;
+      margin-right: auto;
+      &__multi {
+        h5 {
+          margin: 0;
+        }
+        gap: 20px;
+        display: flex;
+        align-items: center;
+      }
     }
   }
 }

@@ -6,11 +6,7 @@ import './BaseCard.scss';
 const BaseCard = (props) => {
   const { children } = props;
 
-  return (
-    <div className="BaseCard">
-      {children}
-    </div>
-  );
+  return <div className="BaseCard">{children}</div>;
 };
 
 BaseCard.propTypes = {
