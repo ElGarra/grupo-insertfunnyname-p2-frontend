@@ -38,7 +38,6 @@ const LoginForm = ({ submitCallback }) => {
         throw new Error(errorMessage);
       } else {
         submitCallback(response.data);
-        setMessage('Logged in successfully');
       }
     } catch (error) {
       setMessage(error.message);
