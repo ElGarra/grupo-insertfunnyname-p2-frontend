@@ -10,24 +10,22 @@ function ProfileCard(props) {
   return (
     <BaseCard>
       <div className="ProfileCard">
-        <div className="full-post">
-          <div className="card__info">
-            <div className="card__info__user">
-              <img src={user.avatarLink} alt={`${username} Profile`} />
-              <h3>{username}</h3>
-            </div>
+        <div className="card__info">
+          <div className="card__info__user">
+            <img src={user.avatarLink} alt={`${username} Profile`} />
+            <h3>{username}</h3>
           </div>
-          <div className="card__stats">
-            <p className="card__stats__title">E-mail</p>
-            <div className="card__stats__info">
-              <p>{user.email}</p>
-            </div>
+        </div>
+        <div className="card__stats">
+          <p className="card__stats__title">E-mail</p>
+          <div className="card__stats__info">
+            <p>{user.email}</p>
           </div>
-          <div className="card__stats">
-            <p className="card__stats__title">Joined</p>
-            <div className="card__stats__info">
-              <p>{`${new Date(user.createdAt).toLocaleDateString()}`}</p>
-            </div>
+        </div>
+        <div className="card__stats">
+          <p className="card__stats__title">Joined</p>
+          <div className="card__stats__info">
+            <p>{`${new Date(user.createdAt).toLocaleDateString()}`}</p>
           </div>
         </div>
       </div>
