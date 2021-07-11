@@ -1,4 +1,5 @@
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
 class ApiClient {
   constructor() {
@@ -16,8 +17,28 @@ class ApiClient {
     return this.axiosConfig.post('/users', formValues);
   }
 
+  async updateUser(formValues, token) {
+    const data = { ...formValues };
+    if (!data.password) {
+      delete data.password;
+      delete data.passwordConfirmation;
+    }
+    const formData = new FormData();
+    Object.keys(data).forEach((key) => {
+      formData.append(key, data[key]);
+    });
+
+    return this.axiosConfig.patch(`/users/${jwtDecode(token).sub}`, formData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
   async retrieveProperties() {
     return this.axiosConfig.get('/properties');
+  }
+
+  async retrieveUserProfile(token) {
+    return this.axiosConfig.get('/users/me', { headers: { Authorization: `Bearer ${token}` } });
   }
 }
 

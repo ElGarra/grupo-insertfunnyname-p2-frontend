@@ -7,19 +7,14 @@ import './TextInput.scss';
 const TextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
 
-  const {
-    onChange, //
-    onBlur,
-    name,
-    value,
-  } = field;
+  const { onBlur, name, value } = field;
 
   return (
     <>
       <label htmlFor={props.id || props.name}>{label}</label>
       <input
         className="text-input"
-        onChange={onChange}
+        onChange={props.onChange}
         onBlur={onBlur}
         id={props.id}
         name={name}
@@ -38,10 +33,12 @@ TextInput.propTypes = {
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   label: PropTypes.node.isRequired,
+  onChange: PropTypes.func,
 };
 
 TextInput.defaultProps = {
   placeholder: '',
+  onChange: () => {},
 };
 
 export default TextInput;
