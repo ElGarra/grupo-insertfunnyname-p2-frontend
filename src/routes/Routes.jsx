@@ -11,6 +11,7 @@ import Properties from '../views/Properties/Properties';
 import Signup from '../views/Signup/Signup';
 import AuthContextProvider from '../contexts/AuthContext';
 import Property from '../views/Property/Property';
+import Profile from '../views/Profile/Profile';
 
 const Routes = () => (
   <Router>
@@ -23,6 +24,7 @@ const Routes = () => (
           <Route path="/signup" exact component={Signup} />
           <Route path="/properties" exact component={Properties} />
           <Route path="/property" exact component={Property} />
+          <Route path="/profile" exact component={Profile} />
         </div>
       </div>
       <Footer />
