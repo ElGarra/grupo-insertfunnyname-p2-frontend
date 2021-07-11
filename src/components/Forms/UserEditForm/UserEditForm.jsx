@@ -28,17 +28,14 @@ const UserEditForm = (props) => {
 
   const validationSchema = Yup.object({
     firstName: Yup.string()
-      .min(1, 'Your first name must be atleast 1 character long')
+      .min(1, 'Your first name must be at least 1 character long')
       .max(70, 'Your first name cannot be longer than 70 characters'),
     lastName: Yup.string()
-      .min(1, 'Your lastname must be atleast 1 character long')
+      .min(1, 'Your last name must be at least 1 character long')
       .max(70, 'Your last name cannot be longer than 70 characters'),
     email: Yup.string().email('Invalid email'),
     password: Yup.string().min(6, 'Your password is too short'),
     passwordConfirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match'),
-    // avatarFile: Yup.object({
-    //   name: Yup.string('what'),
-    // }),
   });
 
   const onSubmit = async (formValues) => {
@@ -57,7 +54,7 @@ const UserEditForm = (props) => {
         throw new Error(errorMessage);
       }
       if (response.status === 204) {
-        setMessage('Usuario editado correctamente');
+        setMessage('Information updated');
         parentCallback(formValues);
       }
     } catch (error) {
