@@ -67,7 +67,7 @@ function IndexCard(props) {
         <div className="card__stats">
           <p className="card__stats__title">Listing made</p>
           <div className="card__stats__info">
-            <p>{property.createdAt}</p>
+            <p>{`${new Date(property.createdAt).toLocaleDateString()}`}</p>
           </div>
         </div>
       </div>

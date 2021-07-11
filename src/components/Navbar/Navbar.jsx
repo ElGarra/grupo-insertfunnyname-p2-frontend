@@ -31,7 +31,7 @@ const Navbar = () => {
           {currentUser ? (
             <div>
               <div className="button-container">
-                <Link to="profile">
+                <Link to="/profile">
                   <Button>My profile</Button>
                 </Link>
               </div>
@@ -42,12 +42,12 @@ const Navbar = () => {
           ) : (
             <div>
               <div className="button-container">
-                <Link to="login">
+                <Link to="/login">
                   <Button>Log In</Button>
                 </Link>
               </div>
               <div className="button-container">
-                <Link to="signup">
+                <Link to="/signup">
                   <Button>Sign up</Button>
                 </Link>
               </div>
