@@ -17,7 +17,7 @@ const Home = () => {
       </div>
       <div className="access-button">
         <h1>Welcome</h1>
-        <Link to="properties">
+        <Link to="/properties">
           <BaseButton>{text}</BaseButton>
         </Link>
       </div>
