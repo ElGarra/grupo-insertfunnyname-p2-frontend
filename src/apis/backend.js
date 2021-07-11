@@ -9,12 +9,24 @@ class ApiClient {
     });
   }
 
+  /**
+   * Auth
+   */
+
   async loginUser(formValues) {
     return this.axiosConfig.post('/auth', formValues);
   }
 
   async createUser(formValues) {
     return this.axiosConfig.post('/users', formValues);
+  }
+
+  /**
+   * User
+   */
+
+  async retrieveUserProfile(token) {
+    return this.axiosConfig.get('/users/me', { headers: { Authorization: `Bearer ${token}` } });
   }
 
   async updateUser(formValues, token) {
@@ -33,12 +45,23 @@ class ApiClient {
     });
   }
 
+  /**
+   * Properties
+   */
+
   async retrieveProperties() {
     return this.axiosConfig.get('/properties');
   }
 
-  async retrieveUserProfile(token) {
-    return this.axiosConfig.get('/users/me', { headers: { Authorization: `Bearer ${token}` } });
+  async createProperty(formValues, token) {
+    const formData = new FormData();
+    Object.keys(formValues).forEach((key) => {
+      formData.append(key, formValues[key]);
+    });
+
+    return this.axiosConfig.post('/properties/', formData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   }
 }
 

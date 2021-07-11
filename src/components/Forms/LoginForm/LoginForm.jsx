@@ -37,8 +37,8 @@ const LoginForm = ({ submitCallback }) => {
         }
         throw new Error(errorMessage);
       } else {
-        submitCallback(response.data);
         setLoading(false);
+        submitCallback(response.data);
       }
     } catch (error) {
       setMessage(error.message);

@@ -1,0 +1,7 @@
+@use "sass:map";
+@import '../../../styles/colors.scss';
+@import '../../../styles/typography.scss';
+
+.text-area {
+  font: inherit;
+}
