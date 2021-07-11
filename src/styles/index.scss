@@ -23,3 +23,9 @@ h5,
 h6 {
   font-family: 'Roboto', sans-serif;
 }
+
+.view-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: map-get($map: $gray, $key: 'dark')
+}

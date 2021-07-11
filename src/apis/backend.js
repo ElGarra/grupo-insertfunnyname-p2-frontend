@@ -15,6 +15,10 @@ class ApiClient {
   async createUser(formValues) {
     return this.axiosConfig.post('/users', formValues);
   }
+
+  async retrieveProperties() {
+    return this.axiosConfig.get('/properties');
+  }
 }
 
 const apiClient = new ApiClient();

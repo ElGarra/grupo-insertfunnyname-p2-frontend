@@ -10,7 +10,7 @@ const Profile = () => {
   return (
     <div>
       {currentUser || <Redirect to="/" />}
-      <h1>{text}</h1>
+      <h1 className="view-title">{text}</h1>
     </div>
   );
 };

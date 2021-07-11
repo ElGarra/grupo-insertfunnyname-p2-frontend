@@ -16,7 +16,7 @@ const Property = () => {
     createdAt: '12/12/2012',
   };
   const tempProperty = {
-    imageLink: 'https://homeworlddesign.com/wp-content/uploads/2019/08/Stark-House-5-880x660.jpg',
+    imageLink: 'https://images.unsplash.com/photo-1523867574998-1a336b6ded04',
     title: 'Cool house',
     street: 'Cool street',
     streetNumber: 1337,
@@ -33,7 +33,7 @@ const Property = () => {
   };
   return (
     <div>
-      <h1>Property</h1>
+      <h1 className="view-title">Property</h1>
       <div className="post-column">
         <FullPropertyCard property={tempProperty} />
         <CommentCard user={tempUser} comment={tempComment} />
