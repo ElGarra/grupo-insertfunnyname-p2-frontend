@@ -21,10 +21,14 @@ const Properties = () => {
       setLoading(true);
       setMessage('');
       const response = await apiClient.retrieveProperties();
-      setProperties(response.data.properties);
-      if (!properties) {
+      const propertiesData = response.data.properties;
+      if (!propertiesData) {
+        throw new Error();
+      }
+      if (propertiesData.length === 0) {
         setMessage('There are no properties to show, come back later!');
       }
+      setProperties(propertiesData);
     } catch (error) {
       setMessage('Could not retrieve properties!');
     } finally {

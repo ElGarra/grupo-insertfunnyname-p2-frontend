@@ -46,6 +46,13 @@ const Property = () => {
       setLoadingComments(true);
       setMessageComments('');
       const response = await apiClient.retrievePropertyComments(propertyId);
+      const commentsData = response.data.comments;
+      if (!commentsData) {
+        throw new Error();
+      }
+      if (commentsData.length === 0) {
+        setMessageComments('There are no comments to show');
+      }
       setComments(response.data.comments);
     } catch (error) {
       setMessageComments('Could not retrieve property comments!');
@@ -53,12 +60,6 @@ const Property = () => {
       setLoadingComments(false);
     }
   }, []);
-
-  useEffect(async () => {
-    if (comments.length === 0) {
-      setMessageComments('There are no comments to show');
-    }
-  }, [comments]);
 
   const updatePropertyInfo = (data) => {
     const newProperty = { ...property, ...data };

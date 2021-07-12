@@ -20,10 +20,11 @@ const Profile = () => {
       setLoading(true);
       setMessage('');
       const response = await apiClient.retrieveUserProfile(currentUser);
-      setUser(response.data.user);
-      if (!user) {
+      const userData = response.data.user;
+      if (!userData) {
         throw new Error();
       }
+      setUser(userData);
     } catch (error) {
       setMessage('Could not retrieve user!');
     } finally {
