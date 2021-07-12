@@ -14,7 +14,7 @@ const CommentCard = (props) => {
           <div className="card__info__user">
             <img src={user.avatarLink} alt={`${user.firstName} ${user.lastName} Profile`} />
             <h3>{`${user.firstName} ${user.lastName}`}</h3>
-            <p className="comment-date subtitle">{comment.createdAt}</p>
+            <p className="comment-date subtitle">{new Date(comment.createdAt).toLocaleString()}</p>
           </div>
           <p className="card__info__extra">{comment.body}</p>
         </div>

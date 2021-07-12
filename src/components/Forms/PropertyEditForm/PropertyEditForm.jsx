@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import './PropertyForm.scss';
+import './PropertyEditForm.scss';
 
 import apiClient from '../../../apis/backend';
 import BaseForm from '../BaseForm/BaseForm';
@@ -13,26 +13,19 @@ import useAuth from '../../../hooks/useAuth';
 import TextArea from '../TextArea/TextArea';
 import Select from '../Select/Select';
 
-const PropertyForm = () => {
-  const history = useHistory();
+const PropertyEditForm = (props) => {
   const { currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [imageFile, setimageFile] = useState({});
 
-  const initialValues = {
-    title: '',
-    type: '',
-    bathrooms: 0,
-    bedrooms: 0,
-    size: 0,
-    region: '',
-    commune: '',
-    street: '',
-    streetNumber: 0,
-    description: '',
-    price: 0,
-    listingType: '',
+  let { initialValues } = props;
+  const { parentCallback, propertyId } = props;
+
+  initialValues = {
+    ...initialValues, //
+    password: '',
+    passwordConfirmation: '',
   };
 
   const validationSchema = Yup.object({
@@ -101,7 +94,11 @@ const PropertyForm = () => {
     setLoading(true);
     try {
       setMessage('');
-      const response = await apiClient.createProperty({ ...formValues, imageFile }, currentUser);
+      const response = await apiClient.updateProperty(
+        propertyId,
+        { ...formValues, imageFile },
+        currentUser,
+      );
       const { error } = response.data;
       if (error) {
         let errorMessage = `${error}. `;
@@ -112,12 +109,11 @@ const PropertyForm = () => {
         }
         throw new Error(errorMessage);
       }
-      if (response.status === 201) {
-        setMessage('Property created');
-        const propertyId = response.data.id;
-        history.push(`/properties/${propertyId}`);
+      if (response.status === 204) {
+        setMessage('Property updated');
+        parentCallback(formValues);
       } else {
-        throw new Error('Could not create property');
+        throw new Error('Could not update property');
       }
     } catch (error) {
       setMessage(error.message);
@@ -239,4 +235,39 @@ const PropertyForm = () => {
   );
 };
 
-export default PropertyForm;
+PropertyEditForm.propTypes = {
+  propertyId: PropTypes.string.isRequired,
+  initialValues: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    type: PropTypes.oneOf([
+      'house',
+      'apartment',
+      'tent',
+      'cabin',
+      'lot',
+      'farm',
+      'room',
+      'mansion',
+      'business',
+      'office',
+      'other',
+    ]).isRequired,
+    bathrooms: PropTypes.number.isRequired,
+    bedrooms: PropTypes.number.isRequired,
+    size: PropTypes.number.isRequired,
+    region: PropTypes.string.isRequired,
+    commune: PropTypes.string.isRequired,
+    street: PropTypes.string.isRequired,
+    streetNumber: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    listingType: PropTypes.oneOf(['sale', 'rent']).isRequired,
+  }).isRequired,
+  parentCallback: PropTypes.func,
+};
+
+PropertyEditForm.defaultProps = {
+  parentCallback: () => {},
+};
+
+export default PropertyEditForm;

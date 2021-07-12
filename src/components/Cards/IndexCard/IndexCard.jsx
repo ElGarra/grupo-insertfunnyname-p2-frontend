@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import './IndexCard.scss';
 
@@ -11,7 +12,9 @@ function IndexCard(props) {
     <BaseCard>
       <div className="IndexCard">
         <div className="card__image">
-          <img src={property.imageLink} alt={`${property.title} Property`} />
+          <Link to={`/properties/${property.id}`}>
+            <img src={property.imageLink} alt={`${property.title} Property`} />
+          </Link>
         </div>
         <div className="card__info">
           <div className="card__info__user">
@@ -77,6 +80,7 @@ function IndexCard(props) {
 
 IndexCard.propTypes = {
   property: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     imageLink: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     street: PropTypes.string.isRequired,

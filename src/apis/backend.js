@@ -53,6 +53,10 @@ class ApiClient {
     return this.axiosConfig.get('/properties');
   }
 
+  async getProperty(propertyId) {
+    return this.axiosConfig.get(`/properties/${propertyId}`);
+  }
+
   async createProperty(formValues, token) {
     const formData = new FormData();
     Object.keys(formValues).forEach((key) => {
@@ -62,6 +66,31 @@ class ApiClient {
     return this.axiosConfig.post('/properties/', formData, {
       headers: { Authorization: `Bearer ${token}` },
     });
+  }
+
+  async updateProperty(propertyId, formValues, token) {
+    const formData = new FormData();
+    Object.keys(formValues).forEach((key) => {
+      formData.append(key, formValues[key]);
+    });
+
+    return this.axiosConfig.patch(`/properties/${propertyId}`, formData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
+  async deleteProperty(propertyId, token) {
+    return this.axiosConfig.delete(`/properties/${propertyId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
+  /**
+   * Properties
+   */
+
+  async retrievePropertyComments(propertyId) {
+    return this.axiosConfig.get(`/properties/${propertyId}/comments`);
   }
 }
 
