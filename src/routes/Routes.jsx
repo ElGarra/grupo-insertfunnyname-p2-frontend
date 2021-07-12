@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import './Routes.scss';
 
@@ -14,22 +15,20 @@ import Property from '../views/Property/Property';
 import Profile from '../views/Profile/Profile';
 
 const Routes = () => (
-  <Router>
-    <AuthContextProvider>
-      <Navbar />
-      <div className="content">
-        <div className="viewport">
-          <Route path="/" exact component={Home} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/signup" exact component={Signup} />
-          <Route path="/properties" exact component={Properties} />
-          <Route path="/properties/:propertyId" exact component={Property} />
-          <Route path="/profile" exact component={Profile} />
-        </div>
+  <AuthContextProvider>
+    <Navbar />
+    <div className="content">
+      <div className="viewport">
+        <Route path="/" exact component={Home} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/signup" exact component={Signup} />
+        <Route path="/properties" exact component={Properties} />
+        <Route path="/properties/:propertyId" exact component={Property} />
+        <Route path="/profile" exact component={Profile} />
       </div>
-      <Footer />
-    </AuthContextProvider>
-  </Router>
+    </div>
+    <Footer />
+  </AuthContextProvider>
 );
 
 export default Routes;
