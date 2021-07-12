@@ -25,11 +25,11 @@ const SignupForm = () => {
 
   const validationSchema = Yup.object({
     firstName: Yup.string()
-      .min(1, 'Your first name must be atleast 1 character long')
+      .min(1, 'Your first name must be at least 1 character long')
       .max(70, 'Your first name cannot be longer than 70 characters')
       .required('This field is required'),
     lastName: Yup.string()
-      .min(1, 'Your lastname must be atleast 1 character long')
+      .min(1, 'Your lastname must be at least 1 character long')
       .max(70, 'Your last name cannot be longer than 70 characters')
       .required('This field is required'),
     email: Yup.string().email('Invalid email').required('This field is required'),

@@ -9,7 +9,7 @@ const Login = () => {
   return (
     <div>
       {currentUser && <Redirect to="/" />}
-      <h1>Log In</h1>
+      <h1 className="view-title">Log In</h1>
       <LoginForm submitCallback={handleUserLogin} />
     </div>
   );

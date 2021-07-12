@@ -1,0 +1,36 @@
+.content .viewport {
+  padding-top: 0;
+}
+
+.Home {
+
+  .landing-image {
+    display: block;
+    max-height: 300px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 0 10px 10px;
+    background: url("https://images.unsplash.com/photo-1524813686514-a57563d77965") no-repeat center center/cover;
+  
+    img {
+      opacity: 0;
+    }
+  }
+
+
+  .access-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    h1 {
+      margin-top: 20px;
+      margin-bottom: 30px;
+      margin-right: auto;
+    }
+    button {
+      font-size: 20px;
+      height: 60px;
+    }
+  }
+}

@@ -9,7 +9,7 @@ const Signup = () => {
   return (
     <div>
       {currentUser && <Redirect to="/" />}
-      <h1>Create an account</h1>
+      <h1 className="view-title">Create an account</h1>
       <SignupForm />
     </div>
   );

@@ -2,28 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useField } from 'formik';
 
-import './TextInput.scss';
+import './TextArea.scss';
 
-const TextInput = ({ label, ...props }) => {
+const TextArea = ({ label, ...props }) => {
   const [field, meta] = useField(props);
 
-  const { onChange } = props.onChange ? props : field;
+  const { onChange } = props.onChange ? props.onChange : field;
   const { onBlur, name, value } = field;
 
   return (
     <>
       <label htmlFor={props.id || props.name}>{label}</label>
-      <input
-        className="text-input"
+      <textarea
+        className="text-area"
         onChange={onChange}
         onBlur={onBlur}
         id={props.id}
         name={name}
         value={value}
-        type={props.type}
         placeholder={props.placeholder}
-        min={props.min}
-        max={props.max}
+        minLength={props.minLength}
+        maxLength={props.maxLength}
         required={props.required}
       />
       {meta.touched && meta.error ? <div className="error">{meta.error}</div> : null}
@@ -31,24 +30,25 @@ const TextInput = ({ label, ...props }) => {
   );
 };
 
-TextInput.propTypes = {
+TextArea.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   label: PropTypes.node.isRequired,
-  min: PropTypes.number,
-  max: PropTypes.number,
+  minLength: PropTypes.number,
+  maxLength: PropTypes.number,
   onChange: PropTypes.func,
   required: PropTypes.bool,
+  rows: PropTypes.number,
 };
 
-TextInput.defaultProps = {
+TextArea.defaultProps = {
   placeholder: '',
   onChange: undefined,
-  min: undefined,
-  max: undefined,
   required: false,
+  minLength: undefined,
+  maxLength: undefined,
+  rows: 1,
 };
 
-export default TextInput;
+export default TextArea;
