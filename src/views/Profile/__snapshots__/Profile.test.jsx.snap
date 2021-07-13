@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Home when user is logged in renders the home page 1`] = `
+exports[`Profile when user is logged in renders the profile page 1`] = `
 Array [
   <header
     className="Navbar"
@@ -49,27 +49,31 @@ Array [
           className="button-container"
         >
           <a
-            href="/profile"
+            href="/login"
             onClick={[Function]}
           >
             <button
               className="BaseButton"
               type="button"
             >
-              My profile
+              Log In
             </button>
           </a>
         </div>
         <div
           className="button-container"
         >
-          <button
-            className="BaseButton"
+          <a
+            href="/signup"
             onClick={[Function]}
-            type="button"
           >
-            Log Out
-          </button>
+            <button
+              className="BaseButton"
+              type="button"
+            >
+              Sign up
+            </button>
+          </a>
         </div>
       </div>
     </nav>
@@ -209,7 +213,7 @@ Array [
 ]
 `;
 
-exports[`Home when user is not logged in renders the home page 1`] = `
+exports[`Profile when user is not logged in renders the profile page 1`] = `
 Array [
   <header
     className="Navbar"

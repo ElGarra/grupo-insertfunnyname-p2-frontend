@@ -4,6 +4,8 @@ import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
 import Routes from '../../routes/Routes';
 
+const { act } = renderer;
+
 function TestRouter({ path }) {
   return (
     <MemoryRouter initialEnteries={[path]}>
@@ -33,10 +35,16 @@ const localStorageMapping = {
   sessionExpiration,
 };
 
-describe('Properties', () => {
+describe('Profile', () => {
+  let testRenderer;
+  beforeAll(() => {
+    act(() => {
+      testRenderer = renderer.create(<TestRouter path="/profile/1" />);
+    });
+  });
   describe('when user is not logged in', () => {
-    it('renders the properties page', () => {
-      const tree = renderer.create(<TestRouter path="/properties" />).toJSON();
+    it('renders the profile page', () => {
+      const tree = testRenderer.toJSON();
       expect(tree).toMatchSnapshot();
     });
   });
@@ -49,8 +57,8 @@ describe('Properties', () => {
     afterEach(() => {
       global.Storage.prototype.getItem.mockReset();
     });
-    it('renders the home page', () => {
-      const tree = renderer.create(<TestRouter path="/properties" />).toJSON();
+    it('renders the profile page', () => {
+      const tree = testRenderer.toJSON();
       expect(tree).toMatchSnapshot();
     });
   });
