@@ -12,6 +12,7 @@ import PropertyEditForm from '../../components/Forms/PropertyEditForm/PropertyEd
 import useAuth from '../../hooks/useAuth';
 import CommentList from '../../components/CommentList/CommentList';
 import ElementToggler from '../../components/ElementToggler/ElementToggler';
+import MeetingForm from '../../components/Forms/MeetingForm/MeetingForm';
 
 const Property = () => {
   const { currentUser } = useAuth();
@@ -34,7 +35,9 @@ const Property = () => {
       if (!propertyData) {
         throw new Error();
       }
-      setUserOwnsProperty(currentUser && String(propertyData.userId) === String(jwtDecode.sub));
+      setUserOwnsProperty(
+        currentUser && String(propertyData.userId) === String(jwtDecode(currentUser).sub),
+      );
       setProperty(propertyData);
     } catch (error) {
       setMessageProperty('Could not retrieve property!');
@@ -136,17 +139,13 @@ const Property = () => {
       <div className="post-column">
         {loadingProperty ? <p className="subtitle1">Loading...</p> : null}
         {messageProperty ? <p className="subtitle1">{messageProperty}</p> : null}
-        {property ? (
-          <>
-            <FullPropertyCard property={property} />
-            {!userOwnsProperty ? (
-              <ElementToggler prompt="Book meeting">
-                <div>Help</div>
-              </ElementToggler>
-            ) : null}
-          </>
+        {property.id ? <FullPropertyCard property={property} /> : null}
+        {property.id && currentUser && !userOwnsProperty ? (
+          <ElementToggler prompt="Book meeting">
+            <MeetingForm propertyId={propertyId} />
+          </ElementToggler>
         ) : null}
-        {userOwnsProperty ? renderPropertyEdit() : null}
+        {property.id && userOwnsProperty ? renderPropertyEdit() : null}
         {loadingComments ? <p className="subtitle1">Loading...</p> : null}
         {messageComments ? <p className="subtitle1">{messageComments}</p> : null}
         <CommentList comments={comments} />
