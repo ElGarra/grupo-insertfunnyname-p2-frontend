@@ -4,16 +4,15 @@ import { Redirect } from 'react-router-dom';
 import apiClient from '../../apis/backend';
 import useAuth from '../../hooks/useAuth';
 import ProfileCard from '../../components/Cards/ProfileCard/ProfileCard';
-import BaseButton from '../../components/BaseButton/BaseButton';
 import UserEditForm from '../../components/Forms/UserEditForm/UserEditForm';
 import BaseCard from '../../components/Cards/BaseCard/BaseCard';
+import ElementToggler from '../../components/ElementToggler/ElementToggler';
 
 const Profile = () => {
   const { currentUser } = useAuth();
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-  const [viewForm, setViewForm] = useState(false);
 
   useEffect(async () => {
     try {
@@ -42,18 +41,14 @@ const Profile = () => {
     return (
       <>
         <ProfileCard user={user} />
-        {viewForm ? (
+        <ElementToggler prompt="Edit profile">
           <BaseCard padding>
             <UserEditForm
               initialValues={{ firstName, lastName, email }}
               parentCallback={updateUserInfo}
             />
           </BaseCard>
-        ) : (
-          <BaseButton type="button" onClick={() => setViewForm(true)}>
-            Edit profile
-          </BaseButton>
-        )}
+        </ElementToggler>
       </>
     );
   };

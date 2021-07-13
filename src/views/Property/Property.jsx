@@ -5,12 +5,13 @@ import jwtDecode from 'jwt-decode';
 import './Property.scss';
 
 import FullPropertyCard from '../../components/Cards/FullPropertyCard/FullPropertyCard';
-import CommentCard from '../../components/Cards/CommentCard/CommentCard';
 import apiClient from '../../apis/backend';
 import BaseButton from '../../components/BaseButton/BaseButton';
 import BaseCard from '../../components/Cards/BaseCard/BaseCard';
 import PropertyEditForm from '../../components/Forms/PropertyEditForm/PropertyEditForm';
 import useAuth from '../../hooks/useAuth';
+import CommentList from '../../components/CommentList/CommentList';
+import ElementToggler from '../../components/ElementToggler/ElementToggler';
 
 const Property = () => {
   const { currentUser } = useAuth();
@@ -19,10 +20,10 @@ const Property = () => {
   const [property, setProperty] = useState({});
   const [loadingProperty, setLoadingProperty] = useState(false);
   const [messageProperty, setMessageProperty] = useState('');
-  const [viewPropertyEditForm, setViewPropertyEditForm] = useState(false);
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(false);
   const [messageComments, setMessageComments] = useState('');
+  const [userOwnsProperty, setUserOwnsProperty] = useState(false);
 
   useEffect(async () => {
     try {
@@ -33,6 +34,7 @@ const Property = () => {
       if (!propertyData) {
         throw new Error();
       }
+      setUserOwnsProperty(currentUser && String(propertyData.userId) === String(jwtDecode.sub));
       setProperty(propertyData);
     } catch (error) {
       setMessageProperty('Could not retrieve property!');
@@ -97,40 +99,30 @@ const Property = () => {
       price,
       listingType,
     } = property;
-    if (!currentUser || String(jwtDecode(currentUser).sub) !== String(property.userId)) {
-      return null;
-    }
-    return viewPropertyEditForm ? (
+    return (
       <>
-        <BaseCard padding>
-          <PropertyEditForm
-            propertyId={propertyId}
-            initialValues={{
-              title,
-              type,
-              bathrooms,
-              bedrooms,
-              size,
-              region,
-              commune,
-              street,
-              streetNumber,
-              description,
-              price,
-              listingType,
-            }}
-            parentCallback={updatePropertyInfo}
-          />
-        </BaseCard>
-        <BaseButton type="button" onClick={deleteProperty}>
-          Delete property
-        </BaseButton>
-      </>
-    ) : (
-      <>
-        <BaseButton type="button" onClick={() => setViewPropertyEditForm(true)}>
-          Edit property
-        </BaseButton>
+        <ElementToggler prompt="Edit property">
+          <BaseCard padding>
+            <PropertyEditForm
+              propertyId={propertyId}
+              initialValues={{
+                title,
+                type,
+                bathrooms,
+                bedrooms,
+                size,
+                region,
+                commune,
+                street,
+                streetNumber,
+                description,
+                price,
+                listingType,
+              }}
+              parentCallback={updatePropertyInfo}
+            />
+          </BaseCard>
+        </ElementToggler>
         <BaseButton type="button" onClick={deleteProperty}>
           Delete property
         </BaseButton>
@@ -138,28 +130,26 @@ const Property = () => {
     );
   };
 
-  const tempUser = {
-    firstName: 'Test',
-    lastName: 'User',
-    avatarLink: 'https://api.time.com/wp-content/uploads/2020/01/smudge-the-cat-interview.jpg',
-  };
-  // const tempComment = {
-  //   body: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-  //   createdAt: '12/12/2012',
-  // };
   return (
     <div>
       <h1 className="view-title">Property</h1>
       <div className="post-column">
         {loadingProperty ? <p className="subtitle1">Loading...</p> : null}
         {messageProperty ? <p className="subtitle1">{messageProperty}</p> : null}
-        {property && property.id ? <FullPropertyCard property={property} /> : null}
-        {currentUser && property && property.id ? renderPropertyEdit() : null}
+        {property ? (
+          <>
+            <FullPropertyCard property={property} />
+            {!userOwnsProperty ? (
+              <ElementToggler prompt="Book meeting">
+                <div>Help</div>
+              </ElementToggler>
+            ) : null}
+          </>
+        ) : null}
+        {userOwnsProperty ? renderPropertyEdit() : null}
         {loadingComments ? <p className="subtitle1">Loading...</p> : null}
         {messageComments ? <p className="subtitle1">{messageComments}</p> : null}
-        {comments.map((comment) => (
-          <CommentCard key={comment.id} user={tempUser} comment={comment} />
-        ))}
+        <CommentList comments={comments} />
       </div>
     </div>
   );
