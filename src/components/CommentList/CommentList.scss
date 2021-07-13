@@ -2,12 +2,5 @@
 @import '../../styles/colors.scss';
 @import '../../styles/typography.scss';
 
-.PropertyList {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
-  column-gap: 10px;
-  row-gap: 15px;
-  align-items: start;
-  justify-items: center;
+.CommentList {
 }
