@@ -49,6 +49,7 @@ const SignupForm = () => {
       if (response.data.error) {
         parseErrors(response);
       }
+      setMessage('User created succesfully! Go to signup to log in!');
     } catch (error) {
       setMessage(error.message);
     } finally {
