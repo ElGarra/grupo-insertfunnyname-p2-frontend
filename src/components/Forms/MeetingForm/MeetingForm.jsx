@@ -34,7 +34,6 @@ const MeetingForm = ({ propertyId, submitCallback }) => {
   const onSubmit = async (formValues) => {
     setLoading(true);
     try {
-      console.log(formValues);
       const formData = { ...formValues };
       formData.date = `${formValues.datePart} ${formValues.timePart}`;
       const response = await apiClient.createPropertyMeeting(propertyId, formData, currentUser);
