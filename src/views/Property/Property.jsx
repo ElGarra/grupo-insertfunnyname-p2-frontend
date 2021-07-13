@@ -13,6 +13,7 @@ import useAuth from '../../hooks/useAuth';
 import CommentList from '../../components/CommentList/CommentList';
 import ElementToggler from '../../components/ElementToggler/ElementToggler';
 import MeetingForm from '../../components/Forms/MeetingForm/MeetingForm';
+import MeetingList from '../../components/MeetingList/MeetingList';
 
 const Property = () => {
   const { currentUser } = useAuth();
@@ -24,6 +25,9 @@ const Property = () => {
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(false);
   const [messageComments, setMessageComments] = useState('');
+  const [meetings, setMeetings] = useState([]);
+  const [loadingMeetings, setLoadingMeetings] = useState(false);
+  const [messageMeetings, setMessageMeetings] = useState('');
   const [userOwnsProperty, setUserOwnsProperty] = useState(false);
 
   useEffect(async () => {
@@ -66,6 +70,26 @@ const Property = () => {
     }
   }, []);
 
+  useEffect(async () => {
+    try {
+      setLoadingMeetings(true);
+      setMessageMeetings('');
+      const response = await apiClient.retrievePropertyMeetings(propertyId, currentUser);
+      const meetingsData = response.data.meetings;
+      if (!meetingsData) {
+        throw new Error();
+      }
+      if (meetingsData.length === 0) {
+        setMessageMeetings('There are no meetings to show');
+      }
+      setMeetings(response.data.meetings);
+    } catch (error) {
+      setMessageMeetings('Could not retrieve property meetings!');
+    } finally {
+      setLoadingMeetings(false);
+    }
+  }, []);
+
   const updatePropertyInfo = (data) => {
     const newProperty = { ...property, ...data };
     setProperty(newProperty);
@@ -86,6 +110,14 @@ const Property = () => {
       setLoadingProperty(false);
     }
   };
+
+  const renderProperty = () => (
+    <>
+      {loadingProperty ? <p className="subtitle1">Loading...</p> : null}
+      {messageProperty ? <p className="subtitle1">{messageProperty}</p> : null}
+      {property.id ? <FullPropertyCard property={property} /> : null}
+    </>
+  );
 
   const renderPropertyEdit = () => {
     const {
@@ -133,22 +165,35 @@ const Property = () => {
     );
   };
 
+  const renderComments = () => (
+    <>
+      {loadingComments ? <p className="subtitle1">Loading...</p> : null}
+      {messageComments ? <p className="subtitle1">{messageComments}</p> : null}
+      <CommentList comments={comments} />
+    </>
+  );
+
+  const renderMeetings = () => (
+    <>
+      {loadingMeetings ? <p className="subtitle1">Loading...</p> : null}
+      {messageMeetings ? <p className="subtitle1">{messageMeetings}</p> : null}
+      <MeetingList meetings={meetings} />
+    </>
+  );
+
   return (
     <div>
       <h1 className="view-title">Property</h1>
       <div className="post-column">
-        {loadingProperty ? <p className="subtitle1">Loading...</p> : null}
-        {messageProperty ? <p className="subtitle1">{messageProperty}</p> : null}
-        {property.id ? <FullPropertyCard property={property} /> : null}
+        {renderProperty()}
         {property.id && currentUser && !userOwnsProperty ? (
           <ElementToggler prompt="Book meeting">
             <MeetingForm propertyId={propertyId} />
           </ElementToggler>
         ) : null}
         {property.id && userOwnsProperty ? renderPropertyEdit() : null}
-        {loadingComments ? <p className="subtitle1">Loading...</p> : null}
-        {messageComments ? <p className="subtitle1">{messageComments}</p> : null}
-        <CommentList comments={comments} />
+        {property.id && userOwnsProperty ? renderMeetings() : null}
+        {renderComments()}
       </div>
     </div>
   );
