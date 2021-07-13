@@ -71,6 +71,9 @@ const Property = () => {
   }, []);
 
   useEffect(async () => {
+    if (!userOwnsProperty) {
+      return;
+    }
     try {
       setLoadingMeetings(true);
       setMessageMeetings('');
@@ -88,7 +91,7 @@ const Property = () => {
     } finally {
       setLoadingMeetings(false);
     }
-  }, []);
+  }, [userOwnsProperty]);
 
   const updatePropertyInfo = (data) => {
     const newProperty = { ...property, ...data };

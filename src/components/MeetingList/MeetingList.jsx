@@ -27,7 +27,7 @@ const MeetingList = (props) => {
         <h4>Meetings</h4>
         <ul>
           {meetings.map((meeting) => (
-            <li>
+            <li key={meeting.id}>
               <p className="summary">
                 {`${new Date(meeting.date).toLocaleString()} - ${meeting.type} - ${tempUser.email}`}
               </p>
