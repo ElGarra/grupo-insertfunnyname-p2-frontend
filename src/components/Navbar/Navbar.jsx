@@ -5,7 +5,6 @@ import './Navbar.scss';
 
 import useAuth from '../../hooks/useAuth';
 import Button from '../BaseButton/BaseButton';
-import SearchBar from '../SearchBar/SearchBar';
 
 const Navbar = () => {
   const { currentUser, handleUserLogout } = useAuth();
@@ -24,9 +23,7 @@ const Navbar = () => {
             </div>
           </div>
           <div>
-            <div className="searchbar-container">
-              <SearchBar />
-            </div>
+            <div> </div>
           </div>
           {currentUser ? (
             <div>

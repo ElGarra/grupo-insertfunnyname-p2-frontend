@@ -8,6 +8,7 @@ import BaseCard from '../../components/Cards/BaseCard/BaseCard';
 import useAuth from '../../hooks/useAuth';
 import PropertyList from '../../components/PropertyList/PropertyList';
 import ElementToggler from '../../components/ElementToggler/ElementToggler';
+import SearchBar from '../../components/SearchBar/SearchBar';
 
 const Properties = () => {
   const { currentUser } = useAuth();
@@ -38,6 +39,7 @@ const Properties = () => {
   return (
     <div>
       <h1 className="view-title">Properties</h1>
+      <SearchBar />
       {loading ? <p className="subtitle1">Loading...</p> : null}
       {message ? <p className="subtitle1">{message}</p> : null}
       {currentUser ? (
