@@ -1,5 +1,9 @@
 # Uso de la App
 
+## Guía de instalación
+Para instalar esta app localmente, sólamente se debe ejecutar el comando `yarn install`, para instalar todas las dependencias que el proyecto requiere. Posterior a esto, la aplicación se puede ejecutar en ambiente de desarrollo usando el comando `yarn start`, lo cual abre automáticamente una ventana en http://localhost:3000. Para acceder a todas las funcionalidades de esta aplicación en ambiente local, se debe también ejecutar el backend. Para esto, referirse a la guía de instalación en el repositorio respectivo. Para "conectar" al backend, solo hay que colocar la `url`, generalmente http://localhost:5000, en el archivo .env, o en un archivo .env.local (que debe crearse), con la variable de entorno `REACT_APP_BACKEND_URL`.
+
+
 ## El link para acceder a la App:
 https://adoring-hamilton-a871be.netlify.app
 
