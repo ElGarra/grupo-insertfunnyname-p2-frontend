@@ -1,0 +1,5 @@
+@import '../ProfileCard/ProfileCard.scss';
+
+.MeetingCard {
+  @extend .ProfileCard;
+}
