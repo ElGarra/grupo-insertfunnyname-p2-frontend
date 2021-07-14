@@ -10,13 +10,6 @@ import BaseButton from '../BaseButton/BaseButton';
 const MeetingList = (props) => {
   const { meetings, title } = props;
 
-  const tempUser = {
-    email: 'some@email.com',
-    firstName: 'Test',
-    lastName: 'User',
-    avatarLink: 'https://api.time.com/wp-content/uploads/2020/01/smudge-the-cat-interview.jpg',
-  };
-
   if (meetings.length === 0) {
     return null;
   }
@@ -29,7 +22,7 @@ const MeetingList = (props) => {
           {meetings.map((meeting) => (
             <li key={meeting.id}>
               <p className="summary">
-                {`${new Date(meeting.date).toLocaleString()} - ${meeting.type} - ${tempUser.email}`}
+                {`${new Date(meeting.date).toLocaleString()} - ${meeting.type}`}
               </p>
               <div className="link">
                 <Link to={`/meetings/${meeting.id}`}>
