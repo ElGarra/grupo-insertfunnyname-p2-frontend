@@ -92,6 +92,16 @@ class ApiClient {
   async retrievePropertyComments(propertyId) {
     return this.axiosConfig.get(`/properties/${propertyId}/comments`);
   }
+
+  /**
+   * Admin
+   */
+
+  async retrieveReports(token) {
+    return this.axiosConfig.get('/admin/reports', {
+      headers: { Authotization: `Bearer ${token}` },
+    });
+  }
 }
 
 const apiClient = new ApiClient();
