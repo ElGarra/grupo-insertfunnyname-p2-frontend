@@ -4,11 +4,16 @@ import PropTypes from 'prop-types';
 import './BaseButton.scss';
 
 const BaseButton = (props) => {
-  const { children, type, onClick } = props;
+  const {
+    children, //
+    type,
+    onClick,
+    styleType,
+  } = props;
 
   return (
     // eslint-disable-next-line react/button-has-type
-    <button className="BaseButton" type={type} onClick={onClick}>
+    <button className={`BaseButton ${styleType}`} type={type} onClick={onClick}>
       {children}
     </button>
   );
@@ -16,12 +21,14 @@ const BaseButton = (props) => {
 
 BaseButton.propTypes = {
   type: PropTypes.oneOf(['submit', 'button', 'reset']),
+  styleType: PropTypes.oneOf(['', 'error', 'warning', 'info', 'success']),
   children: PropTypes.node,
   onClick: PropTypes.func,
 };
 
 BaseButton.defaultProps = {
   type: 'button',
+  styleType: '',
   children: 'Submit',
   onClick: undefined,
 };

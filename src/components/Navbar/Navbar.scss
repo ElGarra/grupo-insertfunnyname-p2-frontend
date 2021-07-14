@@ -2,8 +2,8 @@
 @import '../../styles/colors.scss';
 @import '../../styles/typography.scss';
 
-$navbar-height: 160px;
-$navbar-logo-height: 100px;
+$navbar-height: 80px;
+$navbar-logo-height: 60px;
 
 .navbar-offset {
   display: block;
@@ -24,6 +24,7 @@ $navbar-logo-height: 100px;
 
   nav {
     display: grid;
+    width: 100vw;
     grid-template-columns: 1fr 1fr 1fr;
     z-index: 10;
     transition: all 0.3s;
