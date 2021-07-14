@@ -15,9 +15,11 @@ import ElementToggler from '../../components/ElementToggler/ElementToggler';
 import MeetingForm from '../../components/Forms/MeetingForm/MeetingForm';
 import MeetingList from '../../components/MeetingList/MeetingList';
 import CommentForm from '../../components/Forms/CommentForm/CommentForm';
+import useReportModal from '../../hooks/useReportModal';
 
 const Property = () => {
   const { currentUser } = useAuth();
+  const { openModal } = useReportModal();
   const { propertyId } = useParams();
   const history = useHistory();
   const [property, setProperty] = useState({});
@@ -162,7 +164,7 @@ const Property = () => {
             />
           </BaseCard>
         </ElementToggler>
-        <BaseButton type="button" onClick={deleteProperty}>
+        <BaseButton type="button" onClick={deleteProperty} styleType="warning">
           Delete property
         </BaseButton>
       </>
@@ -192,9 +194,18 @@ const Property = () => {
       <div className="post-column">
         {renderProperty()}
         {property.id && currentUser && !userOwnsProperty ? (
-          <ElementToggler prompt="Book meeting">
-            <MeetingForm propertyId={propertyId} />
-          </ElementToggler>
+          <>
+            <BaseButton
+              type="button"
+              styleType="error"
+              onClick={openModal('user', property.userId)}
+            >
+              Report poster user
+            </BaseButton>
+            <ElementToggler prompt="Book meeting">
+              <MeetingForm propertyId={propertyId} />
+            </ElementToggler>
+          </>
         ) : null}
         {property.id && userOwnsProperty ? renderPropertyEdit() : null}
         {property.id && userOwnsProperty ? renderMeetings() : null}

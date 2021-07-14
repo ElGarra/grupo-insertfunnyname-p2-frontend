@@ -7,12 +7,14 @@ import './CommentCard.scss';
 import BaseCard from '../BaseCard/BaseCard';
 import ElementToggler from '../../ElementToggler/ElementToggler';
 import useAuth from '../../../hooks/useAuth';
+import useReportModal from '../../../hooks/useReportModal';
 import CommentEditForm from '../../Forms/CommentEditForm/CommentEditForm';
 import BaseButton from '../../BaseButton/BaseButton';
 import apiClient from '../../../apis/backend';
 
 const CommentCard = (props) => {
   const { currentUser } = useAuth();
+  const { openModal } = useReportModal();
   const { comment, user } = props;
   const [currentComment, setCurrentComment] = useState(comment);
   const [loading, setLoading] = useState(false);
@@ -70,13 +72,22 @@ const CommentCard = (props) => {
                 submitCallback={updateComment}
               />
             </ElementToggler>
-            <BaseButton type="button" onClick={deleteComment}>
+            <BaseButton type="button" onClick={deleteComment} styleType="warning">
               Delete comment
             </BaseButton>
             {loading ? <p className="subtitle1">Loading...</p> : null}
             {message ? <p className="subtitle1">{message}</p> : null}
           </>
-        ) : null}
+        ) : (
+          <>
+            <BaseButton type="button" styleType="error" onClick={openModal('user', comment.userId)}>
+              Report user
+            </BaseButton>
+            <BaseButton type="button" styleType="error" onClick={openModal('comment', comment.id)}>
+              Report comment
+            </BaseButton>
+          </>
+        )}
       </div>
     </BaseCard>
   );

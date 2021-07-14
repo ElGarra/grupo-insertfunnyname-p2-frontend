@@ -155,14 +155,14 @@ class ApiClient {
    * Reports
    */
 
-  async createUserReport(userId, token) {
-    return this.axiosConfig.post(`/users/${userId}/reports`, {
+  async createUserReport(userId, formValues, token) {
+    return this.axiosConfig.post(`/users/${userId}/reports`, formValues, {
       headers: { Authorization: `Bearer ${token}` },
     });
   }
 
-  async createCommentReport(commentId, token) {
-    return this.axiosConfig.post(`/colmments/${commentId}/reports`, {
+  async createCommentReport(commentId, formValues, token) {
+    return this.axiosConfig.post(`/comments/${commentId}/reports`, formValues, {
       headers: { Authorization: `Bearer ${token}` },
     });
   }

@@ -73,7 +73,9 @@ const Meeting = () => {
             />
           </BaseCard>
         </ElementToggler>
-        <BaseButton onClick={deleteMeeting}>Delete meeting</BaseButton>
+        <BaseButton onClick={deleteMeeting} styleType="warning">
+          Delete meeting
+        </BaseButton>
       </>
     );
   };
