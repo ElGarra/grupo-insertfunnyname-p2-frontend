@@ -8,40 +8,29 @@ import BaseCard from '../BaseCard/BaseCard';
 function MeetingCard(props) {
   const { meeting } = props;
 
-  const sampleSeller = {
-    firstName: 'Joe',
-    lastName: 'Mama',
-    email: 'joemama@example.com',
-  };
+  const { sellerUser, buyerUser } = meeting;
 
-  const sellerUsername = `${sampleSeller.firstName} ${sampleSeller.lastName}`;
-
-  const sampleBuyer = {
-    firstName: 'Test',
-    lastName: 'User',
-    email: 'testuser@example.com',
-  };
-
-  const buyerUsername = `${sampleBuyer.firstName} ${sampleBuyer.lastName}`;
+  const sellerUsername = `${sellerUser.firstName} ${sellerUser.lastName}`;
+  const buyerUsername = `${buyerUser.firstName} ${buyerUser.lastName}`;
 
   return (
     <BaseCard>
       <div className="MeetingCard">
         <div className="card__info">
           <div className="card__info__user">
-            <img src={sampleSeller.avatarLink} alt={`${sellerUsername} Profile`} />
+            <img src={sellerUser.avatarLink} alt={`${sellerUsername} Profile`} />
             <h3>
               [Seller]
-              {` ${sellerUsername} (${sampleSeller.email})`}
+              {` ${sellerUsername} (${sellerUser.email})`}
             </h3>
           </div>
         </div>
         <div className="card__info">
           <div className="card__info__user">
-            <img src={sampleBuyer.avatarLink} alt={`${buyerUsername} Profile`} />
+            <img src={buyerUser.avatarLink} alt={`${buyerUsername} Profile`} />
             <h3>
               [Buyer]
-              {` ${sellerUsername} (${sampleBuyer.email})`}
+              {` ${buyerUsername} (${buyerUser.email})`}
             </h3>
           </div>
         </div>
@@ -73,6 +62,18 @@ MeetingCard.propTypes = {
     type: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired,
+    sellerUser: PropTypes.shape({
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      avatarLink: PropTypes.string.isRequired,
+    }).isRequired,
+    buyerUser: PropTypes.shape({
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      avatarLink: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 
