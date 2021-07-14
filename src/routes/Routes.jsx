@@ -12,6 +12,7 @@ import Signup from '../views/Signup/Signup';
 import AuthContextProvider from '../contexts/AuthContext';
 import Property from '../views/Property/Property';
 import Profile from '../views/Profile/Profile';
+import Admin from '../views/Admin/Admin';
 
 const Routes = () => (
   <Router>
@@ -25,6 +26,7 @@ const Routes = () => (
           <Route path="/properties" exact component={Properties} />
           <Route path="/properties/:propertyId" exact component={Property} />
           <Route path="/profile" exact component={Profile} />
+          <Route path="/admin" exact component={Admin} />
         </div>
       </div>
       <Footer />
