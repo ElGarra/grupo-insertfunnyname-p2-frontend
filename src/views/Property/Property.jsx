@@ -14,6 +14,7 @@ import CommentList from '../../components/CommentList/CommentList';
 import ElementToggler from '../../components/ElementToggler/ElementToggler';
 import MeetingForm from '../../components/Forms/MeetingForm/MeetingForm';
 import MeetingList from '../../components/MeetingList/MeetingList';
+import CommentForm from '../../components/Forms/CommentForm/CommentForm';
 
 const Property = () => {
   const { currentUser } = useAuth();
@@ -173,6 +174,7 @@ const Property = () => {
       {loadingComments ? <p className="subtitle1">Loading...</p> : null}
       {messageComments ? <p className="subtitle1">{messageComments}</p> : null}
       <CommentList comments={comments} />
+      {currentUser ? <CommentForm propertyId={propertyId} /> : null}
     </>
   );
 
