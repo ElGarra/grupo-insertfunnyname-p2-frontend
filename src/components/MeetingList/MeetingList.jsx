@@ -8,7 +8,7 @@ import BaseCard from '../Cards/BaseCard/BaseCard';
 import BaseButton from '../BaseButton/BaseButton';
 
 const MeetingList = (props) => {
-  const { meetings } = props;
+  const { meetings, title } = props;
 
   const tempUser = {
     email: 'some@email.com',
@@ -24,7 +24,7 @@ const MeetingList = (props) => {
   return (
     <BaseCard>
       <div className="MeetingList">
-        <h4>Meetings</h4>
+        <h4>{title}</h4>
         <ul>
           {meetings.map((meeting) => (
             <li key={meeting.id}>
@@ -45,7 +45,12 @@ const MeetingList = (props) => {
 };
 
 MeetingList.propTypes = {
+  title: PropTypes.string,
   meetings: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+MeetingList.defaultProps = {
+  title: 'Meetings',
 };
 
 export default MeetingList;
