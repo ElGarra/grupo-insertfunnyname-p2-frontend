@@ -9,7 +9,9 @@ import BaseButton from '../components/BaseButton/BaseButton';
 
 export const ReportContext = createContext();
 
-Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') {
+  Modal.setAppElement('#root');
+}
 
 const customStyles = {
   overlay: {
