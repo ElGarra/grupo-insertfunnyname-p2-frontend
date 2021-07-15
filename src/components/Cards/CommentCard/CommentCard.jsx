@@ -13,13 +13,15 @@ import BaseButton from '../../BaseButton/BaseButton';
 import apiClient from '../../../apis/backend';
 
 const CommentCard = (props) => {
-  const { currentUser } = useAuth();
+  const { isAdmin, currentUser } = useAuth();
   const { openModal } = useReportModal();
   const { comment, user } = props;
   const [currentComment, setCurrentComment] = useState(comment);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [deleted, setDeleted] = useState(false);
+
+  const userOwnsComment = String(jwtDecode(currentUser).sub) === String(currentComment.userId);
 
   const updateComment = (data) => {
     setCurrentComment({ ...currentComment, ...data });
@@ -62,7 +64,7 @@ const CommentCard = (props) => {
           </div>
           <p className="card__info__extra">{currentComment.body}</p>
         </div>
-        {currentUser && String(jwtDecode(currentUser).sub) === String(currentComment.userId) ? (
+        {currentUser && !isAdmin && userOwnsComment ? (
           <>
             <ElementToggler prompt="Edit comment">
               <CommentEditForm
@@ -78,7 +80,8 @@ const CommentCard = (props) => {
             {loading ? <p className="subtitle1">Loading...</p> : null}
             {message ? <p className="subtitle1">{message}</p> : null}
           </>
-        ) : (
+        ) : null}
+        {currentUser && !userOwnsComment && !isAdmin ? (
           <>
             <BaseButton type="button" styleType="error" onClick={openModal('user', comment.userId)}>
               Report user
@@ -87,7 +90,7 @@ const CommentCard = (props) => {
               Report comment
             </BaseButton>
           </>
-        )}
+        ) : null}
       </div>
     </BaseCard>
   );

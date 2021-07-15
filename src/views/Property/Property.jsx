@@ -18,7 +18,7 @@ import CommentForm from '../../components/Forms/CommentForm/CommentForm';
 import useReportModal from '../../hooks/useReportModal';
 
 const Property = () => {
-  const { currentUser } = useAuth();
+  const { isAdmin, currentUser } = useAuth();
   const { openModal } = useReportModal();
   const { propertyId } = useParams();
   const history = useHistory();
@@ -42,9 +42,8 @@ const Property = () => {
       if (!propertyData) {
         throw new Error();
       }
-      setUserOwnsProperty(
-        currentUser && String(propertyData.userId) === String(jwtDecode(currentUser).sub),
-      );
+      const idEquals = String(propertyData.userId) === String(jwtDecode(currentUser).sub);
+      setUserOwnsProperty(currentUser && idEquals && !isAdmin);
       setProperty(propertyData);
     } catch (error) {
       setMessageProperty('Could not retrieve property!');
@@ -105,7 +104,12 @@ const Property = () => {
     try {
       setLoadingProperty(true);
       setMessageProperty('');
-      const response = await apiClient.deleteProperty(propertyId, currentUser);
+      let response;
+      if (isAdmin) {
+        response = await apiClient.adminDeleteProperty(propertyId, currentUser);
+      } else {
+        response = await apiClient.deleteProperty(propertyId, currentUser);
+      }
       if (response.status !== 204) {
         throw new Error();
       }
@@ -141,33 +145,28 @@ const Property = () => {
       listingType,
     } = property;
     return (
-      <>
-        <ElementToggler prompt="Edit property">
-          <BaseCard padding>
-            <PropertyEditForm
-              propertyId={propertyId}
-              initialValues={{
-                title,
-                type,
-                bathrooms,
-                bedrooms,
-                size,
-                region,
-                commune,
-                street,
-                streetNumber,
-                description,
-                price,
-                listingType,
-              }}
-              parentCallback={updatePropertyInfo}
-            />
-          </BaseCard>
-        </ElementToggler>
-        <BaseButton type="button" onClick={deleteProperty} styleType="warning">
-          Delete property
-        </BaseButton>
-      </>
+      <ElementToggler prompt="Edit property">
+        <BaseCard padding>
+          <PropertyEditForm
+            propertyId={propertyId}
+            initialValues={{
+              title,
+              type,
+              bathrooms,
+              bedrooms,
+              size,
+              region,
+              commune,
+              street,
+              streetNumber,
+              description,
+              price,
+              listingType,
+            }}
+            parentCallback={updatePropertyInfo}
+          />
+        </BaseCard>
+      </ElementToggler>
     );
   };
 
@@ -176,7 +175,7 @@ const Property = () => {
       {loadingComments ? <p className="subtitle1">Loading...</p> : null}
       {messageComments ? <p className="subtitle1">{messageComments}</p> : null}
       <CommentList comments={comments} />
-      {currentUser ? <CommentForm propertyId={propertyId} /> : null}
+      {currentUser && !isAdmin ? <CommentForm propertyId={propertyId} /> : null}
     </>
   );
 
@@ -193,7 +192,7 @@ const Property = () => {
       <h1 className="view-title">Property</h1>
       <div className="post-column">
         {renderProperty()}
-        {property.id && currentUser && !userOwnsProperty ? (
+        {property.id && !userOwnsProperty && !isAdmin ? (
           <>
             <BaseButton
               type="button"
@@ -206,6 +205,11 @@ const Property = () => {
               <MeetingForm propertyId={propertyId} />
             </ElementToggler>
           </>
+        ) : null}
+        {property.id && (userOwnsProperty || isAdmin) ? (
+          <BaseButton type="button" onClick={deleteProperty} styleType="warning">
+            Delete property
+          </BaseButton>
         ) : null}
         {property.id && userOwnsProperty ? renderPropertyEdit() : null}
         {property.id && userOwnsProperty ? renderMeetings() : null}
