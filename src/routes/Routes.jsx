@@ -14,6 +14,7 @@ import ReportContextProvider from '../contexts/ReportContext';
 import Property from '../views/Property/Property';
 import Profile from '../views/Profile/Profile';
 import Meeting from '../views/Meeting/Meeting';
+import Admin from '../views/Admin/Admin';
 
 const Routes = () => (
   <Router>
@@ -29,6 +30,7 @@ const Routes = () => (
             <Route path="/properties/:propertyId" exact component={Property} />
             <Route path="/profile" exact component={Profile} />
             <Route path="/meetings/:meetingId" exact component={Meeting} />
+            <Route path="/admin" exact component={Admin} />
           </div>
         </div>
         <Footer />

@@ -10,7 +10,7 @@ import ElementToggler from '../../components/ElementToggler/ElementToggler';
 import MeetingList from '../../components/MeetingList/MeetingList';
 
 const Profile = () => {
-  const { currentUser } = useAuth();
+  const { isAdmin, currentUser } = useAuth();
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
@@ -99,7 +99,7 @@ const Profile = () => {
 
   return (
     <div>
-      {!currentUser && <Redirect to="/" />}
+      {(!currentUser || isAdmin) && <Redirect to="/" />}
       <h1 className="view-title">Profile</h1>
       {user.id ? renderProfileContents() : null}
       {loading ? <p className="subtitle1">Loading...</p> : null}

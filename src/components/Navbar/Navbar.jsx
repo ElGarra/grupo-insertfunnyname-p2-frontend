@@ -7,7 +7,7 @@ import useAuth from '../../hooks/useAuth';
 import Button from '../BaseButton/BaseButton';
 
 const Navbar = () => {
-  const { currentUser, handleUserLogout } = useAuth();
+  const { isAdmin, currentUser, handleUserLogout } = useAuth();
 
   return (
     <>
@@ -27,11 +27,19 @@ const Navbar = () => {
           </div>
           {currentUser ? (
             <div>
-              <div className="button-container">
-                <Link to="/profile">
-                  <Button>My profile</Button>
-                </Link>
-              </div>
+              {isAdmin ? (
+                <div className="button-container">
+                  <Link to="/admin">
+                    <Button>ADMIN PANEL</Button>
+                  </Link>
+                </div>
+              ) : (
+                <div className="button-container">
+                  <Link to="/profile">
+                    <Button>My profile</Button>
+                  </Link>
+                </div>
+              )}
               <div className="button-container">
                 <Button onClick={handleUserLogout}>Log Out</Button>
               </div>

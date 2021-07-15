@@ -170,6 +170,30 @@ class ApiClient {
   /**
    * Admin
    */
+
+  async retrieveReports(token) {
+    return this.axiosConfig.get('/admin/reports', {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
+  async adminDeleteUser(userId, token) {
+    return this.axiosConfig.delete(`/admin/users/${userId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
+  async adminDeleteProperty(propertyId, token) {
+    return this.axiosConfig.delete(`/admin/properties/${propertyId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
+  async adminDeleteComment(propertyId, commentId, token) {
+    return this.axiosConfig.delete(`/admin/properties/${propertyId}/comments/${commentId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
 }
 
 export const parseErrors = (response) => {
