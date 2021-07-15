@@ -19,6 +19,7 @@ const Profile = () => {
   const [meetings, setMeetings] = useState({ sellerMeetings: [], buyerMeetings: [] });
 
   useEffect(async () => {
+    if (!currentUser) return;
     try {
       setLoading(true);
       setMessage('');
@@ -36,6 +37,7 @@ const Profile = () => {
   }, []);
 
   useEffect(async () => {
+    if (!currentUser) return;
     try {
       setLoadingMeetings(true);
       setMessageMeetings('');
