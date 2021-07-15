@@ -19,29 +19,15 @@ Array [
             >
               <img
                 alt="Logo"
-                src="logo-brand.png"
+                src="/logo-brand.png"
               />
             </a>
           </div>
         </div>
       </div>
       <div>
-        <div
-          className="searchbar-container"
-        >
-          <form
-            className="navbar-form"
-          >
-            <label
-              htmlFor="search"
-            >
-              Search
-              <input
-                id="search"
-                type="text"
-              />
-            </label>
-          </form>
+        <div>
+           
         </div>
       </div>
       <div>
@@ -53,7 +39,7 @@ Array [
             onClick={[Function]}
           >
             <button
-              className="BaseButton"
+              className="BaseButton "
               type="button"
             >
               Log In
@@ -68,7 +54,7 @@ Array [
             onClick={[Function]}
           >
             <button
-              className="BaseButton"
+              className="BaseButton "
               type="button"
             >
               Sign up
@@ -109,7 +95,7 @@ Array [
             onClick={[Function]}
           >
             <button
-              className="BaseButton"
+              className="BaseButton "
               type="button"
             >
               Browse our properties
@@ -136,7 +122,7 @@ Array [
         </h1>
         <img
           alt="Logo"
-          src="logo512.png"
+          src="/logo512.png"
         />
       </a>
     </div>
@@ -232,29 +218,15 @@ Array [
             >
               <img
                 alt="Logo"
-                src="logo-brand.png"
+                src="/logo-brand.png"
               />
             </a>
           </div>
         </div>
       </div>
       <div>
-        <div
-          className="searchbar-container"
-        >
-          <form
-            className="navbar-form"
-          >
-            <label
-              htmlFor="search"
-            >
-              Search
-              <input
-                id="search"
-                type="text"
-              />
-            </label>
-          </form>
+        <div>
+           
         </div>
       </div>
       <div>
@@ -266,7 +238,7 @@ Array [
             onClick={[Function]}
           >
             <button
-              className="BaseButton"
+              className="BaseButton "
               type="button"
             >
               Log In
@@ -281,7 +253,7 @@ Array [
             onClick={[Function]}
           >
             <button
-              className="BaseButton"
+              className="BaseButton "
               type="button"
             >
               Sign up
@@ -322,7 +294,7 @@ Array [
             onClick={[Function]}
           >
             <button
-              className="BaseButton"
+              className="BaseButton "
               type="button"
             >
               Browse our properties
@@ -349,7 +321,7 @@ Array [
         </h1>
         <img
           alt="Logo"
-          src="logo512.png"
+          src="/logo512.png"
         />
       </a>
     </div>
