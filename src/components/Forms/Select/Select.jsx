@@ -8,7 +8,7 @@ const Select = ({ label, ...props }) => {
   const [field, meta] = useField(props);
 
   const { children } = props;
-  const { onChange } = props.onChange ? props.onChange : field;
+  const { onChange } = props.onChange ? props : field;
   const { onBlur, name, value } = field;
 
   return (

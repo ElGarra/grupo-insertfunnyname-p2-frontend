@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import './Routes.scss';
 
@@ -17,26 +18,24 @@ import Meeting from '../views/Meeting/Meeting';
 import Admin from '../views/Admin/Admin';
 
 const Routes = () => (
-  <Router>
-    <AuthContextProvider>
-      <ReportContextProvider>
-        <Navbar />
-        <div className="content">
-          <div className="viewport">
-            <Route path="/" exact component={Home} />
-            <Route path="/login" exact component={Login} />
-            <Route path="/signup" exact component={Signup} />
-            <Route path="/properties" exact component={Properties} />
-            <Route path="/properties/:propertyId" exact component={Property} />
-            <Route path="/profile" exact component={Profile} />
-            <Route path="/meetings/:meetingId" exact component={Meeting} />
-            <Route path="/admin" exact component={Admin} />
-          </div>
+  <AuthContextProvider>
+    <ReportContextProvider>
+      <Navbar />
+      <div className="content">
+        <div className="viewport">
+          <Route path="/" exact component={Home} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/properties" exact component={Properties} />
+          <Route path="/properties/:propertyId" exact component={Property} />
+          <Route path="/profile" exact component={Profile} />
+          <Route path="/meetings/:meetingId" exact component={Meeting} />
+          <Route path="/admin" exact component={Admin} />
         </div>
-        <Footer />
-      </ReportContextProvider>
-    </AuthContextProvider>
-  </Router>
+      </div>
+      <Footer />
+    </ReportContextProvider>
+  </AuthContextProvider>
 );
 
 export default Routes;

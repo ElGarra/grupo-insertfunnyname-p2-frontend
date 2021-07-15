@@ -108,13 +108,13 @@ const PropertyForm = () => {
       if (response.status === 201) {
         setMessage('Property created');
         const propertyId = response.data.id;
+        setLoading(false);
         history.push(`/properties/${propertyId}`);
       } else {
         throw new Error('Could not create property');
       }
     } catch (error) {
       setMessage(error.message);
-    } finally {
       setLoading(false);
     }
   };

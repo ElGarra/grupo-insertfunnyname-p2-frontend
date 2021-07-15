@@ -21,7 +21,11 @@ const CommentCard = (props) => {
   const [message, setMessage] = useState('');
   const [deleted, setDeleted] = useState(false);
 
-  const userOwnsComment = String(jwtDecode(currentUser).sub) === String(currentComment.userId);
+  let userOwnsComment = false;
+  if (currentUser) {
+    const decodedToken = jwtDecode(currentUser);
+    userOwnsComment = String(decodedToken.sub) === String(currentComment.userId);
+  }
 
   const updateComment = (data) => {
     setCurrentComment({ ...currentComment, ...data });
