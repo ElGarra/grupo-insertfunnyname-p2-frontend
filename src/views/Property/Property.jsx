@@ -42,8 +42,10 @@ const Property = () => {
       if (!propertyData) {
         throw new Error();
       }
-      const idEquals = String(propertyData.userId) === String(jwtDecode(currentUser).sub);
-      setUserOwnsProperty(currentUser && idEquals && !isAdmin);
+      if (currentUser) {
+        const idEquals = String(propertyData.userId) === String(jwtDecode(currentUser).sub);
+        setUserOwnsProperty(idEquals && !isAdmin);
+      }
       setProperty(propertyData);
     } catch (error) {
       setMessageProperty('Could not retrieve property!');
@@ -192,7 +194,7 @@ const Property = () => {
       <h1 className="view-title">Property</h1>
       <div className="post-column">
         {renderProperty()}
-        {property.id && !userOwnsProperty && !isAdmin ? (
+        {property.id && currentUser && !userOwnsProperty && !isAdmin ? (
           <>
             <BaseButton
               type="button"
