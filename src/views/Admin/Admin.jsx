@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
 
 import './Admin.scss';
 
@@ -10,17 +9,15 @@ import BaseButton from '../../components/BaseButton/BaseButton';
 import BaseTable from '../../components/Tables/BaseTable/BaseTable';
 
 const Admin = () => {
-  const { currentUser } = useAuth();
+  const { isAdmin, currentUser } = useAuth();
   const history = useHistory();
   const [userReports, setUserReports] = useState([]);
   const [commentReports, setCommentReports] = useState([]);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
-  const userIsAdmin = currentUser && jwtDecode(currentUser).admin;
-
   useEffect(async () => {
-    if (!userIsAdmin) {
+    if (!isAdmin) {
       history.push('/');
       return;
     }
@@ -86,7 +83,7 @@ const Admin = () => {
 
   return (
     <>
-      {userIsAdmin ? null : <Redirect to="/" />}
+      {isAdmin ? null : <Redirect to="/" />}
       {loading ? <p className="subtitle1">Loading...</p> : null}
       {message ? <p className="subtitle1">{message}</p> : null}
       {userReports ? (
