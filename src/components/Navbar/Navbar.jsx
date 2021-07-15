@@ -5,10 +5,9 @@ import './Navbar.scss';
 
 import useAuth from '../../hooks/useAuth';
 import Button from '../BaseButton/BaseButton';
-import SearchBar from '../SearchBar/SearchBar';
 
 const Navbar = () => {
-  const { currentUser, handleUserLogout } = useAuth();
+  const { isAdmin, currentUser, handleUserLogout } = useAuth();
 
   return (
     <>
@@ -18,23 +17,29 @@ const Navbar = () => {
             <div className="brand">
               <div className="logo">
                 <Link to="/">
-                  <img src="logo-brand.png" alt="Logo" />
+                  <img src="/logo-brand.png" alt="Logo" />
                 </Link>
               </div>
             </div>
           </div>
           <div>
-            <div className="searchbar-container">
-              <SearchBar />
-            </div>
+            <div> </div>
           </div>
           {currentUser ? (
             <div>
-              <div className="button-container">
-                <Link to="/profile">
-                  <Button>My profile</Button>
-                </Link>
-              </div>
+              {isAdmin ? (
+                <div className="button-container">
+                  <Link to="/admin">
+                    <Button>ADMIN PANEL</Button>
+                  </Link>
+                </div>
+              ) : (
+                <div className="button-container">
+                  <Link to="/profile">
+                    <Button>My profile</Button>
+                  </Link>
+                </div>
+              )}
               <div className="button-container">
                 <Button onClick={handleUserLogout}>Log Out</Button>
               </div>

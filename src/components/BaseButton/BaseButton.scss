@@ -40,3 +40,40 @@
     0px 3px 14px 2px rgba(0, 0, 0, 0.12)
   );
 }
+
+.BaseButton.error {
+  background-color: map-get($map: $error, $key: 'dark');
+  color: map-get($map: $error, $key: 'contrastText');
+}
+
+.BaseButton:active.error {
+  background-color: map-get($map: $error, $key: 'main');
+}
+
+.BaseButton.warning {
+  background-color: map-get($map: $warning, $key: 'dark');
+  color: map-get($map: $warning, $key: 'contrastText');
+}
+
+.BaseButton:active.warning {
+  background-color: map-get($map: $warning, $key: 'main');
+}
+
+.BaseButton.info {
+  background-color: map-get($map: $info, $key: 'dark');
+  color: map-get($map: $info, $key: 'contrastText');
+}
+
+.BaseButton:active.info {
+  background-color: map-get($map: $info, $key: 'main');
+}
+
+.BaseButton.success {
+  background-color: map-get($map: $success, $key: 'dark');
+  color: map-get($map: $success, $key: 'contrastText');
+}
+
+.BaseButton:active.success {
+  background-color: map-get($map: $success, $key: 'main');
+}
+
