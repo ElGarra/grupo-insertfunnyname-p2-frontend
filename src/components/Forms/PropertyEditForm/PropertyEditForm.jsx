@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 
 import './PropertyEditForm.scss';
 
-import apiClient from '../../../apis/backend';
+import apiClient, { parseErrors } from '../../../apis/backend';
 import BaseForm from '../BaseForm/BaseForm';
 import TextInput from '../TextInput/TextInput';
 import BaseButton from '../../BaseButton/BaseButton';
@@ -99,15 +99,8 @@ const PropertyEditForm = (props) => {
         { ...formValues, imageFile },
         currentUser,
       );
-      const { error } = response.data;
-      if (error) {
-        let errorMessage = `${error}. `;
-        const { errors } = response.data;
-        if (errors) {
-          errorMessage += Object.values(errors).join('. ');
-          errorMessage += '.';
-        }
-        throw new Error(errorMessage);
+      if (response.data.error) {
+        parseErrors(response);
       }
       if (response.status === 204) {
         setMessage('Property updated');

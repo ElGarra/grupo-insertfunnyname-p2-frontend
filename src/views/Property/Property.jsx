@@ -5,24 +5,33 @@ import jwtDecode from 'jwt-decode';
 import './Property.scss';
 
 import FullPropertyCard from '../../components/Cards/FullPropertyCard/FullPropertyCard';
-import CommentCard from '../../components/Cards/CommentCard/CommentCard';
 import apiClient from '../../apis/backend';
 import BaseButton from '../../components/BaseButton/BaseButton';
 import BaseCard from '../../components/Cards/BaseCard/BaseCard';
 import PropertyEditForm from '../../components/Forms/PropertyEditForm/PropertyEditForm';
 import useAuth from '../../hooks/useAuth';
+import CommentList from '../../components/CommentList/CommentList';
+import ElementToggler from '../../components/ElementToggler/ElementToggler';
+import MeetingForm from '../../components/Forms/MeetingForm/MeetingForm';
+import MeetingList from '../../components/MeetingList/MeetingList';
+import CommentForm from '../../components/Forms/CommentForm/CommentForm';
+import useReportModal from '../../hooks/useReportModal';
 
 const Property = () => {
   const { currentUser } = useAuth();
+  const { openModal } = useReportModal();
   const { propertyId } = useParams();
   const history = useHistory();
   const [property, setProperty] = useState({});
   const [loadingProperty, setLoadingProperty] = useState(false);
   const [messageProperty, setMessageProperty] = useState('');
-  const [viewPropertyEditForm, setViewPropertyEditForm] = useState(false);
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(false);
   const [messageComments, setMessageComments] = useState('');
+  const [meetings, setMeetings] = useState([]);
+  const [loadingMeetings, setLoadingMeetings] = useState(false);
+  const [messageMeetings, setMessageMeetings] = useState('');
+  const [userOwnsProperty, setUserOwnsProperty] = useState(false);
 
   useEffect(async () => {
     try {
@@ -33,6 +42,9 @@ const Property = () => {
       if (!propertyData) {
         throw new Error();
       }
+      setUserOwnsProperty(
+        currentUser && String(propertyData.userId) === String(jwtDecode(currentUser).sub),
+      );
       setProperty(propertyData);
     } catch (error) {
       setMessageProperty('Could not retrieve property!');
@@ -61,6 +73,29 @@ const Property = () => {
     }
   }, []);
 
+  useEffect(async () => {
+    if (!userOwnsProperty) {
+      return;
+    }
+    try {
+      setLoadingMeetings(true);
+      setMessageMeetings('');
+      const response = await apiClient.retrievePropertyMeetings(propertyId, currentUser);
+      const meetingsData = response.data.meetings;
+      if (!meetingsData) {
+        throw new Error();
+      }
+      if (meetingsData.length === 0) {
+        setMessageMeetings('There are no meetings to show');
+      }
+      setMeetings(response.data.meetings);
+    } catch (error) {
+      setMessageMeetings('Could not retrieve property meetings!');
+    } finally {
+      setLoadingMeetings(false);
+    }
+  }, [userOwnsProperty]);
+
   const updatePropertyInfo = (data) => {
     const newProperty = { ...property, ...data };
     setProperty(newProperty);
@@ -82,6 +117,14 @@ const Property = () => {
     }
   };
 
+  const renderProperty = () => (
+    <>
+      {loadingProperty ? <p className="subtitle1">Loading...</p> : null}
+      {messageProperty ? <p className="subtitle1">{messageProperty}</p> : null}
+      {property.id ? <FullPropertyCard property={property} /> : null}
+    </>
+  );
+
   const renderPropertyEdit = () => {
     const {
       title,
@@ -97,69 +140,76 @@ const Property = () => {
       price,
       listingType,
     } = property;
-    if (!currentUser || String(jwtDecode(currentUser).sub) !== String(property.userId)) {
-      return null;
-    }
-    return viewPropertyEditForm ? (
+    return (
       <>
-        <BaseCard padding>
-          <PropertyEditForm
-            propertyId={propertyId}
-            initialValues={{
-              title,
-              type,
-              bathrooms,
-              bedrooms,
-              size,
-              region,
-              commune,
-              street,
-              streetNumber,
-              description,
-              price,
-              listingType,
-            }}
-            parentCallback={updatePropertyInfo}
-          />
-        </BaseCard>
-        <BaseButton type="button" onClick={deleteProperty}>
-          Delete property
-        </BaseButton>
-      </>
-    ) : (
-      <>
-        <BaseButton type="button" onClick={() => setViewPropertyEditForm(true)}>
-          Edit property
-        </BaseButton>
-        <BaseButton type="button" onClick={deleteProperty}>
+        <ElementToggler prompt="Edit property">
+          <BaseCard padding>
+            <PropertyEditForm
+              propertyId={propertyId}
+              initialValues={{
+                title,
+                type,
+                bathrooms,
+                bedrooms,
+                size,
+                region,
+                commune,
+                street,
+                streetNumber,
+                description,
+                price,
+                listingType,
+              }}
+              parentCallback={updatePropertyInfo}
+            />
+          </BaseCard>
+        </ElementToggler>
+        <BaseButton type="button" onClick={deleteProperty} styleType="warning">
           Delete property
         </BaseButton>
       </>
     );
   };
 
-  const tempUser = {
-    firstName: 'Test',
-    lastName: 'User',
-    avatarLink: 'https://api.time.com/wp-content/uploads/2020/01/smudge-the-cat-interview.jpg',
-  };
-  // const tempComment = {
-  //   body: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-  //   createdAt: '12/12/2012',
-  // };
+  const renderComments = () => (
+    <>
+      {loadingComments ? <p className="subtitle1">Loading...</p> : null}
+      {messageComments ? <p className="subtitle1">{messageComments}</p> : null}
+      <CommentList comments={comments} />
+      {currentUser ? <CommentForm propertyId={propertyId} /> : null}
+    </>
+  );
+
+  const renderMeetings = () => (
+    <>
+      {loadingMeetings ? <p className="subtitle1">Loading...</p> : null}
+      {messageMeetings ? <p className="subtitle1">{messageMeetings}</p> : null}
+      <MeetingList meetings={meetings} />
+    </>
+  );
+
   return (
     <div>
       <h1 className="view-title">Property</h1>
       <div className="post-column">
-        {loadingProperty ? <p className="subtitle1">Loading...</p> : null}
-        {messageProperty ? <p className="subtitle1">{messageProperty}</p> : null}
-        {property && property.id ? <FullPropertyCard property={property} /> : null}
-        {currentUser && property && property.id ? renderPropertyEdit() : null}
-        {loadingComments ? <p className="subtitle1">Loading...</p> : null}
-        {messageComments ? <p className="subtitle1">{messageComments}</p> : null}
-        {comments.map((comment) => (
-          <CommentCard key={comment.id} user={tempUser} comment={comment} />
-        ))}
+        {renderProperty()}
+        {property.id && currentUser && !userOwnsProperty ? (
+          <>
+            <BaseButton
+              type="button"
+              styleType="error"
+              onClick={openModal('user', property.userId)}
+            >
+              Report poster user
+            </BaseButton>
+            <ElementToggler prompt="Book meeting">
+              <MeetingForm propertyId={propertyId} />
+            </ElementToggler>
+          </>
+        ) : null}
+        {property.id && userOwnsProperty ? renderPropertyEdit() : null}
+        {property.id && userOwnsProperty ? renderMeetings() : null}
+        {renderComments()}
       </div>
     </div>
   );

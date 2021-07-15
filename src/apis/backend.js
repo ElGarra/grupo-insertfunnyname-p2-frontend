@@ -86,23 +86,101 @@ class ApiClient {
   }
 
   /**
-   * Properties
+   * Comments
    */
 
   async retrievePropertyComments(propertyId) {
     return this.axiosConfig.get(`/properties/${propertyId}/comments`);
   }
 
+  async createPropertyComment(propertyId, formValues, token) {
+    return this.axiosConfig.post(`/properties/${propertyId}/comments`, formValues, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
+  async updatePropertyComment(propertyId, commentId, formValues, token) {
+    return this.axiosConfig.patch(`/properties/${propertyId}/comments/${commentId}`, formValues, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
+  async deletePropertyComment(propertyId, commentId, token) {
+    return this.axiosConfig.delete(`/properties/${propertyId}/comments/${commentId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
+  /**
+   * Meetings
+   */
+
+  async createPropertyMeeting(propertyId, formValues, token) {
+    return this.axiosConfig.post(`/properties/${propertyId}/meetings`, formValues, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
+  async retrievePropertyMeetings(propertyId, token) {
+    return this.axiosConfig.get(`/properties/${propertyId}/meetings`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
+  async retrieveUserMeetings(token) {
+    return this.axiosConfig.get('/users/me/meetings', {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
+  async getMeeting(meetingId, token) {
+    return this.axiosConfig.get(`/meetings/${meetingId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
+  async updateMeeting(meetingId, formValues, token) {
+    return this.axiosConfig.patch(`/meetings/${meetingId}`, formValues, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
+  async deleteMeeting(meetingId, token) {
+    return this.axiosConfig.delete(`/meetings/${meetingId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
+  /**
+   * Reports
+   */
+
+  async createUserReport(userId, formValues, token) {
+    return this.axiosConfig.post(`/users/${userId}/reports`, formValues, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
+  async createCommentReport(commentId, formValues, token) {
+    return this.axiosConfig.post(`/comments/${commentId}/reports`, formValues, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
   /**
    * Admin
    */
-
-  async retrieveReports(token) {
-    return this.axiosConfig.get('/admin/reports', {
-      headers: { Authotization: `Bearer ${token}` },
-    });
-  }
 }
+
+export const parseErrors = (response) => {
+  const { error } = response.data;
+  const { errors } = response.data;
+  let errorMessage = `${error}. `;
+  if (errors) {
+    errorMessage += Object.values(errors).join('. ');
+  }
+  throw new Error(errorMessage);
+};
 
 const apiClient = new ApiClient();
 

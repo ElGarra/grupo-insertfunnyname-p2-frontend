@@ -10,26 +10,31 @@ import Login from '../views/Login/Login';
 import Properties from '../views/Properties/Properties';
 import Signup from '../views/Signup/Signup';
 import AuthContextProvider from '../contexts/AuthContext';
+import ReportContextProvider from '../contexts/ReportContext';
 import Property from '../views/Property/Property';
 import Profile from '../views/Profile/Profile';
+import Meeting from '../views/Meeting/Meeting';
 import Admin from '../views/Admin/Admin';
 
 const Routes = () => (
   <Router>
     <AuthContextProvider>
-      <Navbar />
-      <div className="content">
-        <div className="viewport">
-          <Route path="/" exact component={Home} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/signup" exact component={Signup} />
-          <Route path="/properties" exact component={Properties} />
-          <Route path="/properties/:propertyId" exact component={Property} />
-          <Route path="/profile" exact component={Profile} />
-          <Route path="/admin" exact component={Admin} />
+      <ReportContextProvider>
+        <Navbar />
+        <div className="content">
+          <div className="viewport">
+            <Route path="/" exact component={Home} />
+            <Route path="/login" exact component={Login} />
+            <Route path="/signup" exact component={Signup} />
+            <Route path="/properties" exact component={Properties} />
+            <Route path="/properties/:propertyId" exact component={Property} />
+            <Route path="/profile" exact component={Profile} />
+            <Route path="/meetings/:meetingId" exact component={Meeting} />
+            <Route path="/admin" exact component={Admin} />
+          </div>
         </div>
-      </div>
-      <Footer />
+        <Footer />
+      </ReportContextProvider>
     </AuthContextProvider>
   </Router>
 );

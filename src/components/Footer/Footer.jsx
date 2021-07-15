@@ -7,7 +7,7 @@ const Footer = () => (
     <div id="logo-footer">
       <Link to="/">
         <h1 className="wordmark">FindHomy</h1>
-        <img src="logo512.png" alt="Logo" />
+        <img src="/logo512.png" alt="Logo" />
       </Link>
     </div>
     <div className="footer-box">
