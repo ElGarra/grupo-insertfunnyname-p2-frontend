@@ -22,13 +22,10 @@ const user = {
   firstName: 'John',
   lastName: 'Doe',
   email: 'johndoe@example.com',
-  access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE1MiwiaWF0IjoxNjIzNDczOTMwfQ.zXFM-exk-29-afuxH7glrAmrxZokQeCZXd8r_efIbvg',
   token_type: 'Bearer',
 };
 
-const sessionExpiration = new Date(
-  new Date().getTime() + 1000 * 60 * 60 * 24,
-);
+const sessionExpiration = new Date(new Date().getTime() + 1000 * 60 * 60 * 24);
 
 const localStorageMapping = {
   user,
@@ -50,9 +47,7 @@ describe('Profile', () => {
   });
   describe('when user is logged in', () => {
     beforeEach(() => {
-      global.Storage.prototype.getItem = jest.fn(
-        (key) => JSON.stringify(localStorageMapping[key]),
-      );
+      global.Storage.prototype.getItem = jest.fn((key) => JSON.stringify(localStorageMapping[key]));
     });
     afterEach(() => {
       global.Storage.prototype.getItem.mockReset();
