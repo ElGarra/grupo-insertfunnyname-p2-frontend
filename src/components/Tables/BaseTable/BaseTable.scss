@@ -1,8 +1,3 @@
-.wrapper {
-  margin: 0 auto;
-  padding: 40px;
-  max-width: 800px;
-}
 
 .BaseTable {
   margin: 0 0 40px 0;
@@ -16,6 +11,13 @@
     display: block;
   }
 }
+
+.wrapper {
+  margin: 0 auto;
+  padding: 40px;
+  max-width: 800px;
+}
+
 
 .row {
   display: table-row;
